@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>にほんご LIFE — 外国人のための生活日本語</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&family=DM+Sans:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #FAFAF7;
+  --surface:   #FFFFFF;
+  --border:    #E8E4DC;
+  --text:      #1A1A18;
+  --text-mid:  #555550;
+  --text-soft: #888880;
+  --yellow:    #F5E642;
+  --yellow-d:  #C8BB00;
+  --green:     #D4EDDA;
+  --green-d:   #2E7D4F;
+  --blue:      #D6EAF8;
+  --blue-d:    #1565C0;
+  --red:       #FDECEA;
+  --red-d:     #C62828;
+  --tag-h:     #FFF3E0;
+  --tag-hd:    #E65100;
+  --radius:    12px;
+  --shadow:    0 2px 16px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── HEADER ─────────────────────────────── */
+header {
+  background: var(--text);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+  border-bottom: 3px solid var(--yellow);
+}
+.logo {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--yellow);
+  letter-spacing: 0.02em;
+}
+.logo span { color: #fff; font-weight: 300; font-size: 14px; margin-left: 8px; vertical-align: middle; }
+.lang-btns { display: flex; gap: 6px; }
+.lang-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.7);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-btn.active, .lang-btn:hover { background: var(--yellow); border-color: var(--yellow); color: var(--text); }
+
+/* ── NAV TABS ────────────────────────────── */
+.nav-tabs {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 16px;
+  gap: 0;
+  position: sticky; top: 56px; z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 14px 20px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: var(--text-soft);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+}
+.tab-btn:hover { color: var(--text); background: var(--bg); }
+.tab-btn.active { color: var(--text); border-bottom-color: var(--yellow); }
+.tab-btn .emoji { font-size: 18px; }
+
+/* ── MAIN LAYOUT ─────────────────────────── */
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── SECTION HEADER ──────────────────────── */
+.sec-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+.sec-icon {
+  width: 52px; height: 52px;
+  background: var(--yellow);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.sec-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; }
+.sec-sub { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
+
+/* ── SITUATION CARD ──────────────────────── */
+.situation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .situation-grid { grid-template-columns: 1fr; } }
+
+.situation-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.situation-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card-header {
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.card-icon { font-size: 22px; }
+.card-title { font-weight: 700; font-size: 15px; }
+.card-sub { font-size: 12px; color: var(--text-soft); }
+
+/* ── DIALOGUE BLOCK ──────────────────────── */
+.dialogue-block { padding: 0 16px 16px; }
+.dialogue-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: flex-start;
+}
+.dialogue-row.right { flex-direction: row-reverse; }
+
+.bubble-wrap { max-width: 80%; }
+.speaker-label {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.dialogue-row.right .speaker-label { text-align: right; }
+.bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.bubble-jp {
+  background: #F0F0EC;
+  border-radius: 16px 16px 16px 4px;
+  color: var(--text);
+}
+.dialogue-row.right .bubble-jp {
+  background: #E8F4FD;
+  border-radius: 16px 16px 4px 16px;
+}
+.bubble-ruby {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 2px;
+  font-style: italic;
+}
+.bubble-en {
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-top: 3px;
+}
+.key-phrase {
+  background: var(--yellow);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* ── VOCAB TABLE ─────────────────────────── */
+.vocab-section { margin-top: 24px; }
+.vocab-section h3 {
+  font-size: 14px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--text-soft);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.vocab-section h3::after { content:''; flex:1; height:1px; background:var(--border); }
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.vocab-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+}
+.vocab-card:hover { border-color: var(--yellow); box-shadow: 0 0 0 3px rgba(245,230,66,0.2); }
+.vocab-jp { font-size: 20px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
+.vocab-ruby { font-size: 11px; color: var(--text-soft); }
+.vocab-en { font-size: 13px; color: var(--text-mid); margin-top: 4px; }
+.vocab-tag {
+  position: absolute; top: 10px; right: 10px;
+  font-size: 10px; padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 700; letter-spacing: .05em;
+}
+.tag-n { background: var(--blue); color: var(--blue-d); }
+.tag-v { background: var(--green); color: var(--green-d); }
+.tag-adj { background: var(--tag-h); color: var(--tag-hd); }
+.tag-exp { background: var(--red); color: var(--red-d); }
+
+/* ── GRAMMAR POINT ───────────────────────── */
+.grammar-list { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.grammar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.grammar-pattern {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.grammar-en { font-size: 13px; color: var(--text-soft); margin-bottom: 10px; }
+.grammar-example {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.grammar-example .jp { font-weight: 500; }
+.grammar-example .ruby { font-size: 11px; color: var(--text-soft); }
+.grammar-example .en { font-size: 12px; color: var(--text-soft); margin-top: 2px; font-style: italic; }
+
+/* ── QUIZ ────────────────────────────────── */
+.quiz-wrap { margin-top: 8px; }
+.quiz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.quiz-q { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.quiz-q-en { font-size: 13px; color: var(--text-soft); margin-bottom: 14px; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .2s;
+  background: var(--bg);
+  text-align: left;
+  display: flex; gap: 10px; align-items: center;
+}
+.quiz-opt:hover { border-color: var(--yellow); background: #FFFDE0; }
+.quiz-opt.correct { border-color: var(--green-d); background: var(--green); color: var(--green-d); }
+.quiz-opt.wrong { border-color: var(--red-d); background: var(--red); color: var(--red-d); }
+.quiz-opt.disabled { cursor: default; }
+.quiz-feedback {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+}
+.quiz-feedback.correct { background: var(--green); color: var(--green-d); display: block; }
+.quiz-feedback.wrong { background: var(--red); color: var(--red-d); display: block; }
+
+/* ── AUDIO BUTTON ────────────────────────── */
+.audio-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all .2s;
+  margin-top: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+.audio-btn:hover { border-color: var(--yellow); background: var(--yellow); color: var(--text); }
+.audio-btn::before { content: '▶'; font-size: 10px; }
+
+/* ── BADGE TAGS ──────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+  margin: 2px;
+}
+.badge-easy { background: var(--green); color: var(--green-d); }
+.badge-hard { background: var(--red); color: var(--red-d); }
+.badge-polite { background: var(--blue); color: var(--blue-d); }
+.badge-casual { background: var(--tag-h); color: var(--tag-hd); }
+
+/* ── TIP BOX ─────────────────────────────── */
+.tip-box {
+  background: #FFFDE7;
+  border: 1px solid #F9A825;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  margin-top: 12px;
+  display: flex; gap: 10px;
+}
+.tip-box::before { content: '💡'; flex-shrink: 0; }
+
+/* ── SCORE BAR ───────────────────────────── */
+#quiz-score-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--text);
+  color: var(--yellow);
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  transform: translateY(100%);
+  transition: transform .3s;
+  z-index: 200;
+}
+#quiz-score-bar.visible { transform: translateY(0); }
+
+/* ── HERO BANNER ─────────────────────────── */
+.hero {
+  background: var(--text);
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: 'にほんご';
+  position: absolute; right: -10px; top: -20px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 80px; font-weight: 900;
+  color: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: 6px;
+}
+.hero p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.hero-chip {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.hero-chip:hover, .hero-chip.active {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--text);
+}
+
+/* ── COLLAPSE ────────────────────────────── */
+details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+summary {
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 600; font-size: 15px;
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--surface);
+}
+summary::after { content: '＋'; font-size: 18px; color: var(--text-soft); }
+details[open] summary::after { content: '－'; }
+details > div { padding: 0 16px 16px; background: var(--surface); }
+
+/* ── PROGRESS ────────────────────────────── */
+.progress-bar-wrap { background: var(--border); border-radius: 99px; height: 6px; margin: 6px 0 16px; }
+.progress-bar { background: var(--yellow); border-radius: 99px; height: 6px; transition: width .4s; }
+
+/* ── HOSPITAL BLOCKS (tab sub-sections) ──── */
+.hosp-block { display: none; margin-bottom: 8px; }
+.hosp-block.active { display: block; }
+
+/* ── DEPT HEADER ─────────────────────────── */
+.dept-header {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 17px; font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--yellow);
+  box-shadow: var(--shadow);
+}
+
+/* ── DEPT GRID ───────────────────────────── */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+@media (max-width: 600px) { .dept-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.dept-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 12px 12px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  cursor: default;
+}
+.dept-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--yellow); }
+.dept-icon { font-size: 28px; margin-bottom: 6px; }
+.dept-jp { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--text); }
+.dept-ruby { font-size: 10px; color: var(--text-soft); margin-bottom: 4px; }
+.dept-en { font-size: 11px; color: var(--text-mid); margin-bottom: 6px; line-height: 1.4; }
+.dept-symptom {
+  font-size: 11px;
+  background: var(--yellow1, #FFFDE7);
+  background: #FFFDE7;
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: #7A6800;
+  line-height: 1.5;
+}
+
+/* ── INSURANCE GRID ──────────────────────── */
+.insurance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+@media (max-width: 600px) { .insurance-grid { grid-template-columns: 1fr; } }
+
+.insurance-card {
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid transparent;
+}
+.ins-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+.ins-title span { font-size: 11px; font-weight: 400; font-family: 'DM Sans', sans-serif; }
+.ins-en { font-size: 12px; color: var(--text-soft); margin-bottom: 10px; font-style: italic; }
+.ins-body { margin-bottom: 10px; }
+.ins-point { font-size: 13px; line-height: 1.9; }
+.ins-note { font-size: 11px; color: var(--text-soft); border-top: 1px solid rgba(0,0,0,0.08); padding-top: 8px; line-height: 1.5; }
+
+.ins-blue   { background: #E3F2FD; border-color: #90CAF9; }
+.ins-green  { background: #E8F5E9; border-color: #A5D6A7; }
+.ins-yellow { background: #FFFDE7; border-color: #FFE082; }
+.ins-orange { background: #FFF3E0; border-color: #FFCC80; }
+.ins-purple { background: #F3E5F5; border-color: #CE93D8; }
+.ins-red    { background: #FDECEA; border-color: #EF9A9A; }
+
+/* ── GARBAGE SECTION ─────────────────── */
+.garbage-wide { grid-column: 1 / -1; }
+
+.garbage-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 6px;
+}
+@media (max-width:600px) { .garbage-type-grid { grid-template-columns: repeat(2,1fr); } }
+
+.gtype-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 10px;
+  text-align: center;
+}
+.gtype-icon { font-size: 24px; margin-bottom: 4px; }
+.gtype-jp { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; }
+.gtype-ruby { font-size: 10px; color: var(--text-soft); margin-bottom: 4px; }
+.gtype-en { font-size: 11px; color: var(--text-mid); margin-bottom: 6px; font-style: italic; }
+.gtype-ex { font-size: 11px; color: var(--text-mid); line-height: 1.5; }
+.gtype-ex-en { font-size: 10px; color: var(--text-soft); line-height: 1.4; font-style: italic; }
+
+/* ── REGION BUTTONS ──────────────────── */
+.region-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--text-mid);
+}
+.region-btn:hover, .region-btn.active {
+  background: var(--yellow);
+  border-color: var(--yellow-d, #C8BB00);
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ── REGION INFO ─────────────────────── */
+.region-info { display: none; }
+.region-info.active { display: block; }
+
+.region-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 15px; font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--yellow);
+  display: inline-block;
+}
+.region-schedule { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.sched-row {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.sched-type {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sched-day { font-size: 13px; color: var(--text-mid); }
+.sched-type.burn    { background: #FFEBEE; color: #C62828; }
+.sched-type.noburn  { background: #E3F2FD; color: #1565C0; }
+.sched-type.recycle { background: #E8F5E9; color: #2E7D32; }
+.sched-type.plastic { background: #F3E5F5; color: #6A1B9A; }
+.sched-type.bulk    { background: #FFF3E0; color: #E65100; }
+
+.region-note {
+  font-size: 12px;
+  background: #FFFDE7;
+  border: 1px solid #F9A825;
+  border-radius: 8px;
+  padding: 8px 12px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.region-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.region-link-btn {
+  background: var(--blue);
+  color: var(--blue-d);
+  border: 1px solid var(--blueBdr, #42A5F5);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+}
+.region-link-btn:hover { background: var(--blue-d); color: #fff; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">にほんご LIFE <span>外国人のための生活日本語</span></div>
+  <div class="lang-btns">
+    <button class="lang-btn active">JP</button>
+    <button class="lang-btn">EN</button>
+  </div>
+</header>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="switchTab('hospital')" id="tab-hospital">
+    <span class="emoji">🏥</span>病院
+  </button>
+  <button class="tab-btn" onclick="switchTab('city')" id="tab-city">
+    <span class="emoji">🏢</span>市役所
+  </button>
+  <button class="tab-btn" onclick="switchTab('shop')" id="tab-shop">
+    <span class="emoji">🛒</span>買い物
+  </button>
+  <button class="tab-btn" onclick="switchTab('job')" id="tab-job">
+    <span class="emoji">💼</span>仕事
+  </button>
+  <button class="tab-btn" onclick="switchTab('life')" id="tab-life">
+    <span class="emoji">🏠</span>生活
+  </button>
+  <button class="tab-btn" onclick="switchTab('family')" id="tab-family">
+    <span class="emoji">👨‍👩‍👧‍👦</span>家族N4会話
+  </button>
+  <button class="tab-btn" onclick="switchTab('grammar')" id="tab-grammar">
+    <span class="emoji">📝</span>文法
+  </button>
+  <button class="tab-btn" onclick="switchTab('public')" id="tab-public">
+    <span class="emoji">📚</span>公共施設
+  </button>
+  <button class="tab-btn" onclick="switchTab('n4')" id="tab-n4">
+    <span class="emoji">🗣️</span>N4会話
+  </button>
+  <button class="tab-btn" onclick="switchTab('quiz')" id="tab-quiz">
+    <span class="emoji">🎯</span>練習問題
+  </button>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     🏥 病院
+═══════════════════════════════════════════ -->
+<section class="section active" id="section-hospital">
+  <div class="hero">
+    <h1>🏥 病院で使う日本語</h1>
+    <p>Japanese for the hospital / Tiếng Nhật ở bệnh viện / 在医院使用的日语</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="showHospitalTab('all',this)">すべて</span>
+      <span class="hero-chip" onclick="showHospitalTab('dept',this)">🏥 診療科</span>
+      <span class="hero-chip" onclick="showHospitalTab('reception',this)">📋 受付・会計</span>
+      <span class="hero-chip" onclick="showHospitalTab('doctor',this)">🩺 診察</span>
+      <span class="hero-chip" onclick="showHospitalTab('pharmacy',this)">💊 薬局</span>
+      <span class="hero-chip" onclick="showHospitalTab('notebook',this)">📓 お薬手帳</span>
+      <span class="hero-chip" onclick="showHospitalTab('insurance',this)">🪪 保険</span>
+      <span class="hero-chip" onclick="showHospitalTab('emergency',this)">🆘 緊急</span>
+    </div>
+  </div>
+
+  <!-- ══ 診療科 ══ -->
+  <div class="hosp-block" id="hosp-dept">
+    <div class="dept-header">🏥 診療科を選ぶ <span style="font-size:13px;font-weight:400;color:var(--text-soft)">Which department do I go to?</span></div>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <div class="dept-icon">👁️</div>
+        <div class="dept-jp">眼科</div>
+        <div class="dept-ruby">がんか</div>
+        <div class="dept-en">Ophthalmology<br><em>eyes, vision</em></div>
+        <div class="dept-symptom">目が痛い・見えにくい・かゆい</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">👂</div>
+        <div class="dept-jp">耳鼻咽喉科</div>
+        <div class="dept-ruby">じびいんこうか</div>
+        <div class="dept-en">ENT (Ear, Nose & Throat)</div>
+        <div class="dept-symptom">耳が痛い・鼻水・のどが痛い</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🦷</div>
+        <div class="dept-jp">歯科・口腔外科</div>
+        <div class="dept-ruby">しか・こうくうげか</div>
+        <div class="dept-en">Dentistry / Oral Surgery</div>
+        <div class="dept-symptom">歯が痛い・歯ぐきが腫れた</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🩻</div>
+        <div class="dept-jp">整形外科</div>
+        <div class="dept-ruby">せいけいげか</div>
+        <div class="dept-en">Orthopedics<br><em>bones, joints, muscles</em></div>
+        <div class="dept-symptom">骨が折れた・腰が痛い・ねんざ</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🧴</div>
+        <div class="dept-jp">皮膚科</div>
+        <div class="dept-ruby">ひふか</div>
+        <div class="dept-en">Dermatology<br><em>skin</em></div>
+        <div class="dept-symptom">かゆい・発疹・アレルギー・ニキビ</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🫀</div>
+        <div class="dept-jp">内科</div>
+        <div class="dept-ruby">ないか</div>
+        <div class="dept-en">Internal Medicine<br><em>general, fever, cold</em></div>
+        <div class="dept-symptom">熱・せき・おなかが痛い・風邪</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🧠</div>
+        <div class="dept-jp">神経内科</div>
+        <div class="dept-ruby">しんけいないか</div>
+        <div class="dept-en">Neurology<br><em>nerves, brain</em></div>
+        <div class="dept-symptom">頭痛・めまい・手がしびれる</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🫁</div>
+        <div class="dept-jp">外科</div>
+        <div class="dept-ruby">げか</div>
+        <div class="dept-en">Surgery<br><em>wounds, operations</em></div>
+        <div class="dept-symptom">切り傷・やけど・手術が必要</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">👶</div>
+        <div class="dept-jp">小児科</div>
+        <div class="dept-ruby">しょうにか</div>
+        <div class="dept-en">Pediatrics<br><em>children</em></div>
+        <div class="dept-symptom">子どもの熱・せき・発疹</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🤰</div>
+        <div class="dept-jp">産婦人科</div>
+        <div class="dept-ruby">さんふじんか</div>
+        <div class="dept-en">Obstetrics & Gynecology</div>
+        <div class="dept-symptom">妊娠・生理の不調・婦人科系</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🧬</div>
+        <div class="dept-jp">泌尿器科</div>
+        <div class="dept-ruby">ひにょうきか</div>
+        <div class="dept-en">Urology<br><em>urinary system</em></div>
+        <div class="dept-symptom">排尿が痛い・頻尿・腎臓</div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">😷</div>
+        <div class="dept-jp">感染症科</div>
+        <div class="dept-ruby">かんせんしょうか</div>
+        <div class="dept-en">Infectious Disease</div>
+        <div class="dept-symptom">コロナ・インフルエンザ・感染症</div>
+      </div>
+    </div>
+
+    <!-- 診療科を尋ねる会話 -->
+    <div style="margin-top:20px">
+      <div class="vocab-section"><h3>診療科を尋ねる Asking which department</h3></div>
+      <div class="situation-grid" style="margin-top:12px">
+        <div class="situation-card">
+          <div class="card-header"><span class="card-icon">🗺️</span><div><div class="card-title">受付で診療科を聞く</div><div class="card-sub">Asking at reception</div></div></div>
+          <div class="dialogue-block">
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">目が<span class="key-phrase">かゆくて赤い</span>です。<span class="key-phrase">何科</span>に行けばいいですか？</div>
+                <div class="bubble-ruby">Me ga kayukute akai desu. Nanka ni ikeba ii desu ka?</div>
+                <div class="bubble-en">My eyes are itchy and red. Which department should I go to?</div>
+              </div>
+            </div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp"><span class="key-phrase">眼科</span>にどうぞ。3番窓口です。</div>
+                <div class="bubble-en">Please go to ophthalmology. It's window number 3.</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('目がかゆくて赤いです。何科に行けばいいですか？')">聞く</button>
+          </div>
+        </div>
+        <div class="situation-card">
+          <div class="card-header"><span class="card-icon">👂</span><div><div class="card-title">耳鼻科・皮膚科の会話例</div><div class="card-sub">ENT / Dermatology dialogue</div></div></div>
+          <div class="dialogue-block">
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">耳が<span class="key-phrase">聞こえにくい</span>です。<span class="key-phrase">耳鳴り</span>もします。</div>
+                <div class="bubble-ruby">Mimi ga kikoenikui desu. Miminari mo shimasu.</div>
+                <div class="bubble-en">I have trouble hearing. I also have ringing in my ears.</div>
+              </div>
+            </div>
+            <div class="dialogue-row right" style="margin-top:8px">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">体に<span class="key-phrase">発疹</span>が出ました。<span class="key-phrase">かゆい</span>です。</div>
+                <div class="bubble-ruby">Karada ni hasshin ga demashita. Kayui desu.</div>
+                <div class="bubble-en">I have a rash on my body. It's itchy.</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('耳が聞こえにくいです。耳鳴りもします。')">聞く</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 受付・会計 ══ -->
+  <div class="hosp-block" id="hosp-reception">
+  <div class="situation-grid" id="hospital-cards">
+    <div class="situation-card" data-cat="reception">
+      <div class="card-header">
+        <span class="card-icon">📋</span>
+        <div>
+          <div class="card-title">受付で</div>
+          <div class="card-sub">At the reception desk</div>
+        </div>
+      </div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="speaker-label">あなた (You)</div>
+            <div class="bubble bubble-jp">すみません、<span class="key-phrase">初めてです</span>。</div>
+            <div class="bubble-ruby">Sumimasen, hajimete desu.</div>
+            <div class="bubble-en">Excuse me, this is my first time.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">受付 (Staff)</div>
+            <div class="bubble bubble-jp">こちらに<span class="key-phrase">保険証</span>をお願いします。</div>
+            <div class="bubble-ruby">Kochira ni hoken-shō wo onegai shimasu.</div>
+            <div class="bubble-en">Please show your insurance card here.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="speaker-label">あなた</div>
+            <div class="bubble bubble-jp">保険証は<span class="key-phrase">持っていません</span>。</div>
+            <div class="bubble-ruby">Hoken-shō wa motte imasen.</div>
+            <div class="bubble-en">I don't have an insurance card.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('すみません、初めてです。保険証を見せてください。')">聞く Listen</button>
+        <div class="tip-box">保険証がない場合は「じこふたん（自己負担）」になります。費用は高くなります。<br><em>Without insurance, you pay 100%. Costs are higher.</em></div>
+      </div>
+    </div>
+
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">💴</span><div><div class="card-title">会計・支払い</div><div class="card-sub">Payment at checkout</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">受付</div>
+            <div class="bubble bubble-jp">本日の<span class="key-phrase">お会計</span>は2,500円です。</div>
+            <div class="bubble-en">Your total today is 2,500 yen.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">カードで払えますか</span>？</div>
+            <div class="bubble-en">Can I pay by card?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">領収書</span>をください。</div>
+            <div class="bubble-ruby">Ryōshūsho wo kudasai.</div>
+            <div class="bubble-en">Please give me a receipt.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('カードで払えますか？領収書をください。')">聞く</button>
+      </div>
+    </div>
+  </div><!-- end reception cards -->
+  </div><!-- end hosp-reception block -->
+
+  <!-- ══ 診察 ══ -->
+  <div class="hosp-block" id="hosp-doctor">
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="card-header">
+        <span class="card-icon">🩺</span>
+        <div>
+          <div class="card-title">先生に症状を伝える</div>
+          <div class="card-sub">Describing symptoms to the doctor</div>
+        </div>
+      </div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">先生 (Doctor)</div>
+            <div class="bubble bubble-jp"><span class="key-phrase">どうしましたか</span>？</div>
+            <div class="bubble-ruby">Dō shimashita ka?</div>
+            <div class="bubble-en">What's the matter? / What brings you here?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="speaker-label">あなた</div>
+            <div class="bubble bubble-jp"><span class="key-phrase">おなかが痛い</span>です。昨日から<span class="key-phrase">熱</span>もあります。</div>
+            <div class="bubble-ruby">Onaka ga itai desu. Kinō kara netsu mo arimasu.</div>
+            <div class="bubble-en">I have a stomachache. I've also had a fever since yesterday.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">痛みは<span class="key-phrase">ずっとですか</span>、<span class="key-phrase">たまにですか</span>？</div>
+            <div class="bubble-en">Is the pain constant or occasional?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('おなかが痛いです。昨日から熱もあります。')">聞く Listen</button>
+      </div>
+    </div>
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">📋</span><div><div class="card-title">問診票を書く</div><div class="card-sub">Filling in the medical questionnaire</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この<span class="key-phrase">問診票</span>の書き方がわかりません。</div>
+            <div class="bubble-ruby">Kono monshinpyō no kakikata ga wakarimasen.</div>
+            <div class="bubble-en">I don't understand how to fill in this questionnaire.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">〇〇のアレルギー</span>があります。</div>
+            <div class="bubble-en">I have an allergy to 〇〇.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">今、<span class="key-phrase">〇〇という薬</span>を飲んでいます。</div>
+            <div class="bubble-en">I'm currently taking a medicine called 〇〇.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('問診票の書き方がわかりません。教えてください。')">聞く</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 症状リスト -->
+  <div class="vocab-section" style="margin-top:16px">
+    <h3>症状 Symptoms</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">頭が痛い</div><div class="vocab-ruby">あたまがいたい</div><div class="vocab-en">headache</div></div>
+      <div class="vocab-card"><div class="vocab-jp">おなかが痛い</div><div class="vocab-ruby">おなかがいたい</div><div class="vocab-en">stomachache</div></div>
+      <div class="vocab-card"><div class="vocab-jp">せきが出る</div><div class="vocab-ruby">せきがでる</div><div class="vocab-en">coughing</div></div>
+      <div class="vocab-card"><div class="vocab-jp">鼻水が出る</div><div class="vocab-ruby">はなみずがでる</div><div class="vocab-en">runny nose</div></div>
+      <div class="vocab-card"><div class="vocab-jp">めまいがする</div><div class="vocab-ruby">めまいがする</div><div class="vocab-en">dizziness</div></div>
+      <div class="vocab-card"><div class="vocab-jp">吐き気がする</div><div class="vocab-ruby">はきけがする</div><div class="vocab-en">nausea</div></div>
+      <div class="vocab-card"><div class="vocab-jp">目がかゆい</div><div class="vocab-ruby">めがかゆい</div><div class="vocab-en">itchy eyes</div></div>
+      <div class="vocab-card"><div class="vocab-jp">耳が痛い</div><div class="vocab-ruby">みみがいたい</div><div class="vocab-en">earache</div></div>
+      <div class="vocab-card"><div class="vocab-jp">発疹が出た</div><div class="vocab-ruby">はっしんがでた</div><div class="vocab-en">rash appeared</div></div>
+      <div class="vocab-card"><div class="vocab-jp">しびれる</div><div class="vocab-ruby">しびれる</div><div class="vocab-en">numbness / tingling</div></div>
+      <div class="vocab-card"><div class="vocab-jp">息が苦しい</div><div class="vocab-ruby">いきがくるしい</div><div class="vocab-en">difficulty breathing</div></div>
+      <div class="vocab-card"><div class="vocab-jp">むくんでいる</div><div class="vocab-ruby">むくんでいる</div><div class="vocab-en">swollen / bloated</div></div>
+    </div>
+  </div>
+  </div><!-- end hosp-doctor -->
+
+  <!-- ══ 薬局 ══ -->
+  <div class="hosp-block" id="hosp-pharmacy">
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="card-header">
+        <span class="card-icon">💊</span>
+        <div><div class="card-title">薬局で</div><div class="card-sub">At the pharmacy</div></div>
+      </div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">薬剤師 (Pharmacist)</div>
+            <div class="bubble bubble-jp">この薬は<span class="key-phrase">1日3回</span>、<span class="key-phrase">食後</span>に飲んでください。</div>
+            <div class="bubble-ruby">Kono kusuri wa ichinichi sankai, shokugo ni nonde kudasai.</div>
+            <div class="bubble-en">Take this medicine 3 times a day, after meals.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">〇〇の<span class="key-phrase">アレルギー</span>があります。大丈夫ですか？</div>
+            <div class="bubble-en">I have an allergy to 〇〇. Is this okay?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">ジェネリック</span>にできますか？</div>
+            <div class="bubble-ruby">Jeneriku ni dekimasu ka?</div>
+            <div class="bubble-en">Can I have the generic version?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('この薬は一日三回、食後に飲んでください。')">聞く</button>
+        <div class="tip-box">薬の飲み方：食前（しょくぜん）= before meals ／ 食後（しょくご）= after meals ／ 食間（しょっかん）= between meals ／ 就寝前（しゅうしんまえ）= before bed</div>
+      </div>
+    </div>
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">🛒</span><div><div class="card-title">市販薬を買う</div><div class="card-sub">Buying over-the-counter medicine</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">風邪薬</span>はどこですか？</div>
+            <div class="bubble-en">Where is cold medicine?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">子どもに使える<span class="key-phrase">解熱剤</span>はありますか？</div>
+            <div class="bubble-ruby">Kodomo ni tsukaeru kainetsuzai wa arimasu ka?</div>
+            <div class="bubble-en">Do you have fever medicine for children?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('風邪薬はどこですか？子どもに使える解熱剤はありますか？')">聞く</button>
+      </div>
+    </div>
+  </div>
+  </div><!-- end hosp-pharmacy -->
+
+  <!-- ══ お薬手帳 ══ -->
+  <div class="hosp-block" id="hosp-notebook">
+    <div class="info-card-big" style="background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border:2px solid #81C784;border-radius:16px;padding:24px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+        <div style="font-size:40px">📓</div>
+        <div>
+          <div style="font-size:20px;font-weight:700;font-family:'Noto Serif JP',serif">お薬手帳</div>
+          <div style="font-size:13px;color:var(--text-soft)">Medication Notebook / Sổ tay thuốc / 药物手册</div>
+        </div>
+      </div>
+      <p style="font-size:14px;line-height:1.8;color:var(--text-mid)">
+        「お薬手帳」は、これまでに飲んだ薬の記録をまとめた手帳です。<br>
+        病院や薬局に行くとき、<strong>必ず持っていきましょう</strong>。<br>
+        <em style="color:var(--text-soft)">The "okusuri techō" is a notebook that records all medicines you have taken. Always bring it to hospitals and pharmacies.</em>
+      </p>
+    </div>
+
+    <div class="situation-grid">
+      <div class="situation-card">
+        <div class="card-header"><span class="card-icon">❓</span><div><div class="card-title">お薬手帳とは？</div><div class="card-sub">What is the medication notebook?</div></div></div>
+        <div class="dialogue-block">
+          <div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.9">
+            <div>✅ 今まで飲んだ薬の<strong>名前と量</strong>が書いてある</div>
+            <div>✅ アレルギーや副作用の記録もできる</div>
+            <div>✅ 複数の病院に行くとき、<strong>薬の重複・飲み合わせ</strong>を防ぐ</div>
+            <div>✅ 薬局でもらえる。無料または安い</div>
+            <div>✅ スマートフォンのアプリでも管理できる</div>
+            <div style="margin-top:10px;color:var(--text-soft);font-size:12px"><em>Records all medicine names and doses / Prevents duplicate prescriptions / Available free or cheaply at pharmacies / Can also use a smartphone app</em></div>
+          </div>
+          <button class="audio-btn" onclick="speak('お薬手帳をお持ちですか？次回から持ってきてください。')">聞く</button>
+        </div>
+      </div>
+      <div class="situation-card">
+        <div class="card-header"><span class="card-icon">💬</span><div><div class="card-title">薬局でのやりとり</div><div class="card-sub">At the pharmacy — notebook conversation</div></div></div>
+        <div class="dialogue-block">
+          <div class="dialogue-row">
+            <div class="bubble-wrap">
+              <div class="speaker-label">薬剤師</div>
+              <div class="bubble bubble-jp"><span class="key-phrase">お薬手帳</span>はお持ちですか？</div>
+              <div class="bubble-en">Do you have your medication notebook?</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp">はい、あります。／ いいえ、<span class="key-phrase">作りたいです</span>。</div>
+              <div class="bubble-en">Yes, I have it. / No, I'd like to get one.</div>
+            </div>
+          </div>
+          <div class="dialogue-row">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp">こちらに<span class="key-phrase">シール</span>を貼ります。お薬の情報が書いてあります。</div>
+              <div class="bubble-en">We'll paste a sticker in it. It has your medicine information.</div>
+            </div>
+          </div>
+          <button class="audio-btn" onclick="speak('お薬手帳はお持ちですか？作りたいです。')">聞く</button>
+          <div class="tip-box">お薬手帳を持参すると、薬局での<strong>調剤料が安くなる</strong>ことがあります！<br><em>Bringing your notebook may reduce dispensing fees!</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vocab-section" style="margin-top:16px">
+      <h3>お薬手帳 関連単語</h3>
+      <div class="vocab-grid">
+        <div class="vocab-card"><div class="vocab-jp">処方箋</div><div class="vocab-ruby">しょほうせん</div><div class="vocab-en">prescription</div></div>
+        <div class="vocab-card"><div class="vocab-jp">調剤</div><div class="vocab-ruby">ちょうざい</div><div class="vocab-en">dispensing (medicine)</div></div>
+        <div class="vocab-card"><div class="vocab-jp">副作用</div><div class="vocab-ruby">ふくさよう</div><div class="vocab-en">side effects</div></div>
+        <div class="vocab-card"><div class="vocab-jp">飲み合わせ</div><div class="vocab-ruby">のみあわせ</div><div class="vocab-en">drug interaction</div></div>
+        <div class="vocab-card"><div class="vocab-jp">ジェネリック</div><div class="vocab-ruby">じぇねりっく</div><div class="vocab-en">generic medicine</div></div>
+        <div class="vocab-card"><div class="vocab-jp">錠剤</div><div class="vocab-ruby">じょうざい</div><div class="vocab-en">tablet / pill</div></div>
+        <div class="vocab-card"><div class="vocab-jp">粉薬</div><div class="vocab-ruby">こなぐすり</div><div class="vocab-en">powdered medicine</div></div>
+        <div class="vocab-card"><div class="vocab-jp">塗り薬</div><div class="vocab-ruby">ぬりぐすり</div><div class="vocab-en">ointment / cream</div></div>
+      </div>
+    </div>
+  </div><!-- end hosp-notebook -->
+
+  <!-- ══ 保険 ══ -->
+  <div class="hosp-block" id="hosp-insurance">
+    <div class="vocab-section"><h3>🪪 日本の保険制度 Japan's insurance system</h3></div>
+
+    <!-- 保険種類カード -->
+    <div class="insurance-grid">
+      <div class="insurance-card ins-blue">
+        <div class="ins-title">🏢 健康保険<br><span>けんこうほけん</span></div>
+        <div class="ins-en">Employee Health Insurance</div>
+        <div class="ins-body">
+          <div class="ins-point">📌 会社員・パート向け</div>
+          <div class="ins-point">✅ 自己負担 <strong>3割</strong>（3/10）</div>
+          <div class="ins-point">✅ 扶養家族も加入できる</div>
+          <div class="ins-point">✅ 会社が保険料の半分を払う</div>
+        </div>
+        <div class="ins-note">For employees & part-time workers. Company pays half the premium.</div>
+      </div>
+
+      <div class="insurance-card ins-green">
+        <div class="ins-title">🏘️ 国民健康保険<br><span>こくみんけんこうほけん</span></div>
+        <div class="ins-en">National Health Insurance (NHI)</div>
+        <div class="ins-body">
+          <div class="ins-point">📌 自営業・留学生・無職向け</div>
+          <div class="ins-point">✅ 自己負担 <strong>3割</strong></div>
+          <div class="ins-point">✅ 市役所で加入できる</div>
+          <div class="ins-point">⚠️ 保険料は自分で全額払う</div>
+        </div>
+        <div class="ins-note">For self-employed, students, unemployed. Apply at city hall.</div>
+      </div>
+
+      <div class="insurance-card ins-yellow">
+        <div class="ins-title">👶 後期高齢者医療制度<br><span>こうきこうれいしゃいりょうせいど</span></div>
+        <div class="ins-en">Late-stage elderly medical insurance</div>
+        <div class="ins-body">
+          <div class="ins-point">📌 75歳以上向け</div>
+          <div class="ins-point">✅ 自己負担 <strong>1割</strong>（収入による）</div>
+          <div class="ins-point">✅ 自動的に切り替わる</div>
+        </div>
+        <div class="ins-note">For people aged 75+. Automatically enrolled.</div>
+      </div>
+
+      <div class="insurance-card ins-orange">
+        <div class="ins-title">🌍 海外旅行保険<br><span>かいがいりょこうほけん</span></div>
+        <div class="ins-en">Travel insurance (from home country)</div>
+        <div class="ins-body">
+          <div class="ins-point">📌 観光・短期滞在者向け</div>
+          <div class="ins-point">⚠️ 日本の健保に加入するまでの間</div>
+          <div class="ins-point">✅ クレカ付帯の場合もある</div>
+          <div class="ins-point">❌ 長期使用は認められない</div>
+        </div>
+        <div class="ins-note">For tourists and short-stay visitors. Not valid long-term.</div>
+      </div>
+
+      <div class="insurance-card ins-purple">
+        <div class="ins-title">🏥 民間医療保険<br><span>みんかんいりょうほけん</span></div>
+        <div class="ins-en">Private medical insurance</div>
+        <div class="ins-body">
+          <div class="ins-point">📌 任意加入の追加保険</div>
+          <div class="ins-point">✅ 入院・手術費用の補填</div>
+          <div class="ins-point">✅ がん保険・生命保険なども</div>
+          <div class="ins-point">📌 保険会社に申し込む</div>
+        </div>
+        <div class="ins-note">Optional private insurance for hospitalization, surgery, cancer, etc.</div>
+      </div>
+
+      <div class="insurance-card ins-red">
+        <div class="ins-title">⚠️ 無保険のとき<br><span>むほけん</span></div>
+        <div class="ins-en">Without insurance</div>
+        <div class="ins-body">
+          <div class="ins-point">❌ 自己負担 <strong>10割</strong>（全額）</div>
+          <div class="ins-point">❌ とても高い費用になる</div>
+          <div class="ins-point">📌 できるだけ早く加入を！</div>
+          <div class="ins-point">⚠️ 市役所で手続きが必要</div>
+        </div>
+        <div class="ins-note">You pay 100% of medical costs. Apply for insurance ASAP at city hall.</div>
+      </div>
+    </div>
+
+    <!-- 保険証の使い方 -->
+    <div class="situation-grid" style="margin-top:20px">
+      <div class="situation-card">
+        <div class="card-header"><span class="card-icon">🪪</span><div><div class="card-title">保険証を見せる</div><div class="card-sub">Showing your insurance card</div></div></div>
+        <div class="dialogue-block">
+          <div class="dialogue-row">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp"><span class="key-phrase">保険証</span>をご提示ください。</div>
+              <div class="bubble-en">Please show your insurance card.</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp">はい、<span class="key-phrase">国民健康保険</span>です。</div>
+              <div class="bubble-en">Yes, this is my National Health Insurance card.</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp">今月から<span class="key-phrase">会社の保険</span>に変わりました。</div>
+              <div class="bubble-en">My insurance changed to my company's plan this month.</div>
+            </div>
+          </div>
+          <button class="audio-btn" onclick="speak('はい、国民健康保険です。保険証を見せます。')">聞く</button>
+        </div>
+      </div>
+      <div class="situation-card">
+        <div class="card-header"><span class="card-icon">📝</span><div><div class="card-title">国民健康保険に加入する</div><div class="card-sub">Applying for NHI at city hall</div></div></div>
+        <div class="dialogue-block">
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp"><span class="key-phrase">国民健康保険</span>に加入したいです。</div>
+              <div class="bubble-ruby">Kokumin-kenkō-hoken ni kanyū shitai desu.</div>
+              <div class="bubble-en">I'd like to enroll in National Health Insurance.</div>
+            </div>
+          </div>
+          <div class="dialogue-row">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp">在留カードとパスポートをお持ちですか？<span class="key-phrase">転入日</span>から加入できます。</div>
+              <div class="bubble-en">Do you have your residence card and passport? You can enroll from your move-in date.</div>
+            </div>
+          </div>
+          <button class="audio-btn" onclick="speak('国民健康保険に加入したいです。在留カードを持ってきました。')">聞く</button>
+          <div class="tip-box">加入が遅れても、最大<strong>2年分</strong>の保険料をさかのぼって払う場合があります。<br><em>Delayed enrollment may mean retroactive payments of up to 2 years.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vocab-section" style="margin-top:16px">
+      <h3>保険 関連単語</h3>
+      <div class="vocab-grid">
+        <div class="vocab-card"><div class="vocab-jp">保険証</div><div class="vocab-ruby">ほけんしょう</div><div class="vocab-en">insurance card</div></div>
+        <div class="vocab-card"><div class="vocab-jp">自己負担</div><div class="vocab-ruby">じこふたん</div><div class="vocab-en">out-of-pocket cost</div></div>
+        <div class="vocab-card"><div class="vocab-jp">保険料</div><div class="vocab-ruby">ほけんりょう</div><div class="vocab-en">insurance premium</div></div>
+        <div class="vocab-card"><div class="vocab-jp">加入する</div><div class="vocab-ruby">かにゅうする</div><div class="vocab-en">to enroll in insurance</div><span class="vocab-tag tag-v">V</span></div>
+        <div class="vocab-card"><div class="vocab-jp">扶養家族</div><div class="vocab-ruby">ふようかぞく</div><div class="vocab-en">dependent family members</div></div>
+        <div class="vocab-card"><div class="vocab-jp">高額療養費</div><div class="vocab-ruby">こうがくりょうようひ</div><div class="vocab-en">high-cost medical expense system</div></div>
+        <div class="vocab-card"><div class="vocab-jp">限度額</div><div class="vocab-ruby">げんどがく</div><div class="vocab-en">limit / ceiling (of payment)</div></div>
+        <div class="vocab-card"><div class="vocab-jp">請求書</div><div class="vocab-ruby">せいきゅうしょ</div><div class="vocab-en">invoice / bill</div></div>
+      </div>
+    </div>
+  </div><!-- end hosp-insurance -->
+
+  <!-- ══ 緊急 ══ -->
+  <div class="hosp-block" id="hosp-emergency">
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">🆘</span><div><div class="card-title">救急・緊急フレーズ</div><div class="card-sub">Emergency phrases</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px"><span class="key-phrase">たすけてください！</span></div>
+            <div class="bubble-ruby">Tasukete kudasai!</div>
+            <div class="bubble-en">Please help me!</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">きゅうきゅうしゃ</span>をよんでください。</div>
+            <div class="bubble-ruby">Kyūkyūsha wo yonde kudasai.</div>
+            <div class="bubble-en">Please call an ambulance.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">ここが<span class="key-phrase">いたい</span>です。（体を指さして）</div>
+            <div class="bubble-en">It hurts here. (point to body)</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">意識が<span class="key-phrase">ありません</span>。</div>
+            <div class="bubble-en">They are unconscious.</div>
+          </div>
+        </div>
+        <div class="tip-box">
+          <div style="font-weight:700;margin-bottom:6px">📞 緊急電話番号 Emergency Numbers</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px">
+            <div style="background:#fff;border-radius:8px;padding:8px 10px;border:1.5px solid #EF9A9A">🚑 救急・火事<br><strong style="font-size:18px;color:#C62828">119</strong><br><span style="font-size:11px;color:#888">Ambulance / Fire</span></div>
+            <div style="background:#fff;border-radius:8px;padding:8px 10px;border:1.5px solid #90CAF9">🚓 警察<br><strong style="font-size:18px;color:#1565C0">110</strong><br><span style="font-size:11px;color:#888">Police</span></div>
+            <div style="background:#fff;border-radius:8px;padding:8px 10px;border:1.5px solid #A5D6A7;grid-column:1/-1">📱 救急安心センター（#7119）<br><strong style="font-size:16px;color:#2E7D4F">#7119</strong>　<span style="font-size:12px">全国対応</span><br><span style="font-size:11px;color:#555">「病院に行くべきか」「どの病院に行けばいいか」を相談できます。<br><em>Call to ask: "Should I go to the hospital?" or "Which hospital should I go to?"</em><br>24時間対応の地域あり・外国語対応あり</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">🌙</span><div><div class="card-title">夜間・休日診療</div><div class="card-sub">After-hours / holiday clinics</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">夜間診療</span>はどこですか？</div>
+            <div class="bubble-en">Where is the after-hours clinic?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">今日は<span class="key-phrase">休日</span>ですが、診てもらえますか？</div>
+            <div class="bubble-en">Today is a holiday, but can I be seen?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('夜間診療はどこですか？今日は休日ですが診てもらえますか？')">聞く</button>
+        <div class="tip-box">
+          <strong>#7119 救急安心センター</strong>とは？<br>
+          「救急車を呼ぶほどでもないかも…」「夜間に開いている病院はどこ？」と思ったとき、まず<strong>#7119</strong>に電話しましょう。<br>
+          ✅ 24時間対応（地域による）　✅ 看護師・医師が相談にのってくれる　✅ 一部地域で外国語対応あり<br>
+          <em style="font-size:11px;color:#888">When unsure whether to call 119, call #7119 first. Nurses/doctors give advice. Available 24h in many regions. Some areas offer foreign language support.</em>
+        </div>
+      </div>
+    </div>
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">📱</span><div><div class="card-title">#7119 救急安心センター</div><div class="card-sub">Emergency consultation line</div></div></div>
+      <div class="dialogue-block">
+        <div style="background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border:1.5px solid #81C784;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:13px;line-height:1.9">
+          <div style="font-weight:700;color:#2E7D4F;margin-bottom:6px">📞 #7119 とは？ What is #7119?</div>
+          <div>📱 電話番号：<strong style="font-size:16px">#7119</strong>（スマホ・固定電話どちらでも）</div>
+          <div>🕐 24時間対応（地域による）</div>
+          <div>👩‍⚕️ 看護師・医師が相談にのってくれる</div>
+          <div>🌍 一部地域で外国語対応あり</div>
+          <div style="margin-top:6px;color:#555;font-size:12px"><em>Dial #7119 from any phone. Nurses/doctors advise whether you need emergency care. Available 24h in most regions. Foreign language support in some areas.</em></div>
+        </div>
+
+        <div style="font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em">使い方 How to use</div>
+
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">おなかが<span class="key-phrase">すごく</span>いたいです。<span class="key-phrase">きゅうきゅうしゃ</span>を<span class="key-phrase">よんだほうがいいですか</span>？</div>
+            <div class="bubble-ruby">Onaka ga sugoku itai desu. Kyūkyūsha wo yonda hō ga ii desu ka?</div>
+            <div class="bubble-en">I have severe stomach pain. Should I call an ambulance?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">夜間</span>に開いている<span class="key-phrase">病院</span>を<span class="key-phrase">おしえてください</span>。</div>
+            <div class="bubble-ruby">Yakan ni hiraite iru byōin wo oshiete kudasai.</div>
+            <div class="bubble-en">Please tell me which hospitals are open at night.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">日本語が得意ではありません</span>。英語で話せますか？</div>
+            <div class="bubble-en">My Japanese is not good. Can you speak English?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('おなかがすごく痛いです。救急車を呼んだほうがいいですか？')">聞く</button>
+        <div class="tip-box">119番との違い：<strong>#7119</strong>は「相談」用。本当に緊急の場合（意識がない・呼吸が止まっているなど）は、すぐに<strong>119番</strong>へ！<br><em>Difference from 119: #7119 is for consultation. If truly life-threatening (unconscious, not breathing), call 119 immediately!</em></div>
+      </div>
+    </div>
+
+  </div><!-- end emergency situation-grid -->
+  </div><!-- end hosp-emergency -->
+
+  <!-- ══ 全体単語 ══ -->
+  <div class="hosp-block" id="hosp-vocab-all">
+  <div class="vocab-section">
+    <h3>単語まとめ All Hospital Vocabulary</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">病院</div><div class="vocab-ruby">びょういん</div><div class="vocab-en">hospital</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">診療科</div><div class="vocab-ruby">しんりょうか</div><div class="vocab-en">medical department</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">保険証</div><div class="vocab-ruby">ほけんしょう</div><div class="vocab-en">health insurance card</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">処方箋</div><div class="vocab-ruby">しょほうせん</div><div class="vocab-en">prescription</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">お薬手帳</div><div class="vocab-ruby">おくすりてちょう</div><div class="vocab-en">medication notebook</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">診察</div><div class="vocab-ruby">しんさつ</div><div class="vocab-en">medical examination</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">問診票</div><div class="vocab-ruby">もんしんひょう</div><div class="vocab-en">medical questionnaire</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">救急車</div><div class="vocab-ruby">きゅうきゅうしゃ</div><div class="vocab-en">ambulance</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">熱</div><div class="vocab-ruby">ねつ</div><div class="vocab-en">fever</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">痛い</div><div class="vocab-ruby">いたい</div><div class="vocab-en">painful / it hurts</div><span class="vocab-tag tag-adj">Adj</span></div>
+      <div class="vocab-card"><div class="vocab-jp">アレルギー</div><div class="vocab-ruby">あれるぎー</div><div class="vocab-en">allergy</div><span class="vocab-tag tag-n">N</span></div>
+      <div class="vocab-card"><div class="vocab-jp">食後</div><div class="vocab-ruby">しょくご</div><div class="vocab-en">after meals</div><span class="vocab-tag tag-n">N</span></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     🏢 市役所
+═══════════════════════════════════════════ -->
+<section class="section" id="section-city">
+  <div class="hero">
+    <h1>🏢 市役所で使う日本語</h1>
+    <p>Japanese for city hall / Văn phòng thành phố / 在市政厅使用的日语</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="filterCards('city','all',this)">すべて</span>
+      <span class="hero-chip" onclick="filterCards('city','residence',this)">📋 在留・住民票</span>
+      <span class="hero-chip" onclick="filterCards('city','garbage',this)">🗑️ ごみ</span>
+      <span class="hero-chip" onclick="filterCards('city','mynumber',this)">🪪 マイナンバー</span>
+      <span class="hero-chip" onclick="filterCards('city','insurance',this)">💰 保険・税金</span>
+    </div>
+  </div>
+
+  <div class="situation-grid" id="city-cards">
+    <div class="situation-card" data-cat="residence">
+      <div class="card-header"><span class="card-icon">📝</span><div><div class="card-title">転入届・住民票</div><div class="card-sub">Moving-in notification</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">転入届</span>を出したいです。</div>
+            <div class="bubble-ruby">Tennyu-todoke wo dashitai desu.</div>
+            <div class="bubble-en">I'd like to submit a moving-in notification.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">在留カード</span>とパスポートをお持ちですか？</div>
+            <div class="bubble-en">Do you have your residence card and passport?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">はい、あります。<span class="key-phrase">記入方法</span>を教えてください。</div>
+            <div class="bubble-en">Yes. Please tell me how to fill this in.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('転入届を出したいです。記入方法を教えてください。')">聞く</button>
+        <div class="tip-box">引越しから<strong>14日以内</strong>に届けてください。<br><em>Must be done within 14 days of moving.</em></div>
+      </div>
+    </div>
+
+    <div class="situation-card garbage-wide" data-cat="garbage" style="grid-column:1/-1">
+      <div class="card-header"><span class="card-icon">🗑️</span><div><div class="card-title">ごみの出し方</div><div class="card-sub">How to put out garbage — rules differ by region!</div></div></div>
+      <div class="dialogue-block">
+
+        <!-- 重要注意 -->
+        <div style="background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px">
+          <strong style="color:#E65100">⚠️ 大切なこと / Important!</strong><br>
+          ごみの出し方は<strong>市区町村によって違います</strong>。引越したら、まず役所や管理会社に確認しましょう。<br>
+          <em style="color:#888">Garbage rules differ by municipality. After moving, check with your city office or building manager first.</em>
+        </div>
+
+        <!-- ごみの種類 -->
+        <div id="garbage-types-section">
+          <div style="font-size:13px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">ごみの種類 Types of garbage</div>
+          <div class="garbage-type-grid">
+            <div class="gtype-card" style="border-color:#EF5350">
+              <div class="gtype-icon">🔥</div>
+              <div class="gtype-jp">燃えるごみ</div>
+              <div class="gtype-ruby">もえるごみ</div>
+              <div class="gtype-en">Burnable / Combustible</div>
+              <div class="gtype-ex">生ごみ・紙くず・木くず・布類</div>
+              <div class="gtype-ex-en">food waste, paper scraps, cloth</div>
+            </div>
+            <div class="gtype-card" style="border-color:#42A5F5">
+              <div class="gtype-icon">🪨</div>
+              <div class="gtype-jp">燃えないごみ</div>
+              <div class="gtype-ruby">もえないごみ</div>
+              <div class="gtype-en">Non-burnable / Incombustible</div>
+              <div class="gtype-ex">金属・ガラス・陶器・小型家電</div>
+              <div class="gtype-ex-en">metal, glass, ceramics, small appliances</div>
+            </div>
+            <div class="gtype-card" style="border-color:#66BB6A">
+              <div class="gtype-icon">♻️</div>
+              <div class="gtype-jp">資源ごみ</div>
+              <div class="gtype-ruby">しげんごみ</div>
+              <div class="gtype-en">Recyclables</div>
+              <div class="gtype-ex">かん・びん・ペットボトル・段ボール</div>
+              <div class="gtype-ex-en">cans, bottles, PET bottles, cardboard</div>
+            </div>
+            <div class="gtype-card" style="border-color:#AB47BC">
+              <div class="gtype-icon">🔵</div>
+              <div class="gtype-jp">プラスチック</div>
+              <div class="gtype-ruby">ぷらすちっく</div>
+              <div class="gtype-en">Plastic</div>
+              <div class="gtype-ex">容器・包装・トレー<br>（地域によって分け方が違う！）</div>
+              <div class="gtype-ex-en">containers, packaging, trays<br>(rules vary by area!)</div>
+            </div>
+            <div class="gtype-card" style="border-color:#FF7043">
+              <div class="gtype-icon">🛋️</div>
+              <div class="gtype-jp">粗大ごみ</div>
+              <div class="gtype-ruby">そだいごみ</div>
+              <div class="gtype-en">Oversized / Bulk waste</div>
+              <div class="gtype-ex">家具・家電・自転車<br>→ <strong>事前申込み必要！</strong></div>
+              <div class="gtype-ex-en">furniture, appliances, bikes<br>→ Pre-registration required!</div>
+            </div>
+            <div class="gtype-card" style="border-color:#FFA726">
+              <div class="gtype-icon">🌿</div>
+              <div class="gtype-jp">有害ごみ</div>
+              <div class="gtype-ruby">ゆうがいごみ</div>
+              <div class="gtype-en">Hazardous waste</div>
+              <div class="gtype-ex">乾電池・蛍光灯・スプレー缶<br>→ 特別な処理が必要</div>
+              <div class="gtype-ex-en">batteries, fluorescent bulbs, spray cans<br>→ Special handling required</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 地域別シミュレーター -->
+        <div style="margin-top:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">🗺️ 地域シミュレーター Regional Simulator</div>
+          <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+            <div style="font-size:13px;margin-bottom:10px;color:var(--text-mid)">地域を選んでください / Select your region:</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+              <button class="region-btn active" onclick="showRegion('tokyo',this)">🗼 東京23区</button>
+              <button class="region-btn" onclick="showRegion('osaka',this)">🏯 大阪市</button>
+              <button class="region-btn" onclick="showRegion('yokohama',this)">⚓ 横浜市</button>
+              <button class="region-btn" onclick="showRegion('nagoya',this)">🌸 名古屋市</button>
+              <button class="region-btn" onclick="showRegion('sapporo',this)">⛄ 札幌市</button>
+              <button class="region-btn" onclick="showRegion('fukuoka',this)">🍜 福岡市</button>
+            </div>
+
+            <!-- 東京23区 -->
+            <div class="region-info active" id="region-tokyo">
+              <div class="region-name">🗼 東京23区（例：新宿区）</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 燃えるごみ</span><span class="sched-day">週2回（例：火・金曜日）</span></div>
+                <div class="sched-row"><span class="sched-type noburn">🪨 燃えないごみ</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ 資源（かん・びん・ペットボトル）</span><span class="sched-day">週1回</span></div>
+                <div class="sched-row"><span class="sched-type plastic">🔵 プラスチック</span><span class="sched-day">週1回（区によって異なる）</span></div>
+                <div class="sched-row"><span class="sched-type bulk">🛋️ 粗大ごみ</span><span class="sched-day">要事前申込み（電話・ネット）</span></div>
+              </div>
+              <div class="region-note">⚠️ 東京23区は区によって収集日が<strong>異なります</strong>。区のウェブサイトで確認を！<br><em>Collection days vary by ward. Check your ward's website!</em></div>
+              <div class="region-links">
+                <a href="https://www.city.shinjuku.lg.jp/" target="_blank" class="region-link-btn">新宿区サイト</a>
+                <a href="https://www.city.shibuya.tokyo.jp/" target="_blank" class="region-link-btn">渋谷区サイト</a>
+              </div>
+            </div>
+
+            <!-- 大阪市 -->
+            <div class="region-info" id="region-osaka">
+              <div class="region-name">🏯 大阪市</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 普通ごみ（燃えるごみ）</span><span class="sched-day">週2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ 資源ごみ</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type plastic">🔵 容器包装プラスチック</span><span class="sched-day">週1回</span></div>
+                <div class="sched-row"><span class="sched-type bulk">🛋️ 粗大ごみ</span><span class="sched-day">要事前予約（無料・有料あり）</span></div>
+              </div>
+              <div class="region-note">⚠️ 大阪市はごみ袋の<strong>指定なし</strong>（透明・半透明ならOK）。区によって収集日が違います。<br><em>No designated bags required in Osaka. Collection days vary by ward.</em></div>
+            </div>
+
+            <!-- 横浜市 -->
+            <div class="region-info" id="region-yokohama">
+              <div class="region-name">⚓ 横浜市</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 燃やすごみ</span><span class="sched-day">週2回</span></div>
+                <div class="sched-row"><span class="sched-type noburn">🪨 燃えないごみ・小さな金属類</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ 資源（かん・びん・ペットボトル）</span><span class="sched-day">週1回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">📦 古紙・古布</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type plastic">🔵 プラスチック製容器包装</span><span class="sched-day">週1回</span></div>
+                <div class="sched-row"><span class="sched-type bulk">🛋️ 粗大ごみ</span><span class="sched-day">要事前申込み（有料）</span></div>
+              </div>
+              <div class="region-note">⚠️ 横浜市は分別が細かい！<strong>横浜G30</strong>というルールで分別が厳しい。指定袋は<strong>不要</strong>。<br><em>Yokohama has detailed sorting rules. No designated bags required.</em></div>
+            </div>
+
+            <!-- 名古屋市 -->
+            <div class="region-info" id="region-nagoya">
+              <div class="region-name">🌸 名古屋市</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 燃えるごみ</span><span class="sched-day">週2回</span></div>
+                <div class="sched-row"><span class="sched-type noburn">🪨 燃えないごみ</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ 資源（かん・びん・ペットボトル）</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type plastic">🔵 プラスチック</span><span class="sched-day">燃えるごみと同じ袋でOK</span></div>
+              </div>
+              <div class="region-note">⚠️ 名古屋市は<strong>指定袋</strong>（なごやん袋）が必要。コンビニ・スーパーで購入できます。<br><em>Designated garbage bags (Nagoya bags) required. Available at convenience stores and supermarkets.</em></div>
+            </div>
+
+            <!-- 札幌市 -->
+            <div class="region-info" id="region-sapporo">
+              <div class="region-name">⛄ 札幌市</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 燃やせるごみ</span><span class="sched-day">週2回</span></div>
+                <div class="sched-row"><span class="sched-type noburn">🪨 燃やせないごみ</span><span class="sched-day">月1〜2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ びん・缶・ペットボトル</span><span class="sched-day">月2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">📦 段ボール・紙・布</span><span class="sched-day">月1〜2回</span></div>
+              </div>
+              <div class="region-note">⚠️ 札幌市も<strong>指定袋</strong>が必要（有料）。コンビニ・スーパーで購入。冬は雪の影響で収集日が変わることがあります。<br><em>Designated bags required (paid). Collection may change in winter due to snow.</em></div>
+            </div>
+
+            <!-- 福岡市 -->
+            <div class="region-info" id="region-fukuoka">
+              <div class="region-name">🍜 福岡市</div>
+              <div class="region-schedule">
+                <div class="sched-row"><span class="sched-type burn">🔥 燃えるごみ</span><span class="sched-day">週2回（月・木 または 火・金）</span></div>
+                <div class="sched-row"><span class="sched-type noburn">🪨 燃えないごみ</span><span class="sched-day">月1〜2回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">♻️ 空きびん・空き缶・ペットボトル</span><span class="sched-day">週1回</span></div>
+                <div class="sched-row"><span class="sched-type recycle">📦 古紙・段ボール</span><span class="sched-day">月1〜2回</span></div>
+              </div>
+              <div class="region-note">⚠️ 福岡市は<strong>指定袋なし</strong>（透明・半透明ならOK）。地区によって収集日が異なります。<br><em>No designated bags required. Collection days vary by district.</em></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 市役所での会話 -->
+        <div style="margin-top:18px">
+          <div style="font-size:13px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">💬 市役所・管理会社での会話</div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <span class="badge badge-easy">やさしい日本語</span>
+              <div class="bubble bubble-jp" style="margin-top:4px">ごみは<span class="key-phrase">なんようびに</span><span class="key-phrase">だしますか</span>？</div>
+              <div class="bubble-en">Which day do I put out the garbage?</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp"><span class="key-phrase">ごみぶくろ</span>は<span class="key-phrase">どこで</span>かいますか？</div>
+              <div class="bubble-en">Where can I buy garbage bags?</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp"><span class="key-phrase">ごみすてば</span>は<span class="key-phrase">どこですか</span>？</div>
+              <div class="bubble-en">Where is the garbage collection point?</div>
+            </div>
+          </div>
+          <div class="dialogue-row right">
+            <div class="bubble-wrap">
+              <div class="bubble bubble-jp"><span class="key-phrase">そだいごみ</span>は<span class="key-phrase">どうやってすてますか</span>？</div>
+              <div class="bubble-en">How do I dispose of oversized garbage?</div>
+            </div>
+          </div>
+          <button class="audio-btn" onclick="speak('ごみはなんようびに出しますか？ごみぶくろはどこで買いますか？')">聞く</button>
+        </div>
+
+        <div class="tip-box">
+          <div>
+            <strong>自分の地域のルールを調べる方法</strong><br>
+            ① 市区町村のウェブサイトを見る<br>
+            ② 「ごみ分別アプリ」をスマホにインストールする（例：さんあ～るアプリ）<br>
+            ③ 引越しのとき、不動産や管理会社に聞く<br>
+            ④ 近所の人に聞く<br>
+            <em style="font-size:11px;color:#888">Ways to find your local rules: ① Check your city's website ② Download a garbage sorting app ③ Ask your real estate agent when moving ④ Ask your neighbors</em>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="situation-card" data-cat="mynumber">
+      <div class="card-header"><span class="card-icon">🪪</span><div><div class="card-title">マイナンバーカード</div><div class="card-sub">My Number Card</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">マイナンバーカード</span>を作りたいです。</div>
+            <div class="bubble-en">I'd like to get a My Number Card.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">こちらの<span class="key-phrase">申請書</span>に記入して、写真を持ってきてください。</div>
+            <div class="bubble-en">Please fill in this application form and bring a photo.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('マイナンバーカードを作りたいです。')">聞く</button>
+      </div>
+    </div>
+
+    <div class="situation-card" data-cat="insurance">
+      <div class="card-header"><span class="card-icon">💰</span><div><div class="card-title">税金・健康保険</div><div class="card-sub">Tax & National Health Insurance</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">国民健康保険</span>に加入したいです。</div>
+            <div class="bubble-ruby">Kokumin-kenkō-hoken ni kanyū shitai desu.</div>
+            <div class="bubble-en">I'd like to join the national health insurance.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">在留カード</span>と<span class="key-phrase">パスポート</span>をお持ちですか？</div>
+            <div class="bubble-en">Do you have your residence card and passport?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('国民健康保険に加入したいです。')">聞く</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vocab-section">
+    <h3>単語 Vocabulary</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">在留カード</div><div class="vocab-ruby">ざいりゅうかーど</div><div class="vocab-en">residence card</div></div>
+      <div class="vocab-card"><div class="vocab-jp">住民票</div><div class="vocab-ruby">じゅうみんひょう</div><div class="vocab-en">resident registration</div></div>
+      <div class="vocab-card"><div class="vocab-jp">転入届</div><div class="vocab-ruby">てんにゅうとどけ</div><div class="vocab-en">moving-in notification</div></div>
+      <div class="vocab-card"><div class="vocab-jp">申請書</div><div class="vocab-ruby">しんせいしょ</div><div class="vocab-en">application form</div></div>
+      <div class="vocab-card"><div class="vocab-jp">記入する</div><div class="vocab-ruby">きにゅうする</div><div class="vocab-en">to fill in a form</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">窓口</div><div class="vocab-ruby">まどぐち</div><div class="vocab-en">counter / window</div></div>
+      <div class="vocab-card"><div class="vocab-jp">税金</div><div class="vocab-ruby">ぜいきん</div><div class="vocab-en">tax</div></div>
+      <div class="vocab-card"><div class="vocab-jp">印鑑</div><div class="vocab-ruby">いんかん</div><div class="vocab-en">personal seal / stamp</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     🛒 買い物
+═══════════════════════════════════════════ -->
+<section class="section" id="section-shop">
+  <div class="hero">
+    <h1>🛒 買い物で使う日本語</h1>
+    <p>Shopping Japanese / Mua sắm / 购物日语</p>
+  </div>
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">👗</span><div><div class="card-title">服を買う</div><div class="card-sub">Buying clothes</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">いらっしゃいませ</span>！何かお探しですか？</div>
+            <div class="bubble-en">Welcome! Are you looking for something?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">これの<span class="key-phrase">Lサイズ</span>はありますか？</div>
+            <div class="bubble-en">Do you have this in size L?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">試着してもいいですか</span>？</div>
+            <div class="bubble-ruby">Shichaku shite mo ii desu ka?</div>
+            <div class="bubble-en">May I try this on?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('試着してもいいですか？')">聞く</button>
+      </div>
+    </div>
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">💳</span><div><div class="card-title">会計・支払い</div><div class="card-sub">Checkout / Payment</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">カード</span>で払えますか？</div>
+            <div class="bubble-en">Can I pay by card?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">はい。<span class="key-phrase">一括払い</span>ですか、<span class="key-phrase">分割払い</span>ですか？</div>
+            <div class="bubble-en">Yes. Lump sum or installment?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">袋はいりません</span>。</div>
+            <div class="bubble-en">I don't need a bag.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('カードで払えますか？袋はいりません。')">聞く</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vocab-section">
+    <h3>単語 Vocabulary</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">いくら</div><div class="vocab-ruby">いくら</div><div class="vocab-en">how much?</div><span class="vocab-tag tag-exp">EXP</span></div>
+      <div class="vocab-card"><div class="vocab-jp">安い</div><div class="vocab-ruby">やすい</div><div class="vocab-en">cheap / inexpensive</div><span class="vocab-tag tag-adj">Adj</span></div>
+      <div class="vocab-card"><div class="vocab-jp">高い</div><div class="vocab-ruby">たかい</div><div class="vocab-en">expensive / tall</div><span class="vocab-tag tag-adj">Adj</span></div>
+      <div class="vocab-card"><div class="vocab-jp">割引</div><div class="vocab-ruby">わりびき</div><div class="vocab-en">discount</div></div>
+      <div class="vocab-card"><div class="vocab-jp">レシート</div><div class="vocab-ruby">れしーと</div><div class="vocab-en">receipt</div></div>
+      <div class="vocab-card"><div class="vocab-jp">返品</div><div class="vocab-ruby">へんぴん</div><div class="vocab-en">return (a product)</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     💼 仕事
+═══════════════════════════════════════════ -->
+<section class="section" id="section-job">
+  <div class="hero">
+    <h1>💼 アルバイト面接会話</h1>
+    <p>Part-time job interview / Phỏng vấn việc làm thêm / 兼职面试日语</p>
+    <div class="hero-chips">
+      <span class="hero-chip active">やさしい日本語</span>
+    </div>
+  </div>
+
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">🤝</span><div><div class="card-title">面接：自己紹介</div><div class="card-sub">Self introduction</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">自己紹介</span>をしてください。</div>
+            <div class="bubble-en">Please introduce yourself.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">はじめまして。<span class="key-phrase">〇〇</span>といいます。ベトナムから来ました。<br>日本語を<span class="key-phrase">べんきょうしています</span>。よろしくおねがいします。</div>
+            <div class="bubble-en">Nice to meet you. My name is 〇〇. I'm from Vietnam. I'm studying Japanese. Nice to meet you.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('はじめまして。私は〇〇といいます。ベトナムから来ました。よろしくおねがいします。')">聞く</button>
+      </div>
+    </div>
+
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">📅</span><div><div class="card-title">面接：シフト・希望</div><div class="card-sub">Work schedule preferences</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">いつ<span class="key-phrase">働けますか</span>？</div>
+            <div class="bubble-en">When can you work?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">月曜日と水曜日と金曜日は<span class="key-phrase">はたらけます</span>。<br>学校が<span class="key-phrase">あるひ</span>は<span class="key-phrase">はたらけません</span>。</div>
+            <div class="bubble-en">I can work Monday, Wednesday, and Friday. I can't work on school days.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('月曜日と水曜日と金曜日は働けます。')">聞く</button>
+      </div>
+    </div>
+
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">❓</span><div><div class="card-title">仕事中：わからないとき</div><div class="card-sub">When you don't understand at work</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px"><span class="key-phrase">もう一度</span>おねがいします。</div>
+            <div class="bubble-en">Please say it one more time.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">ゆっくり</span>おねがいします。</div>
+            <div class="bubble-en">Please speak slowly.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">かいてください</span>。</div>
+            <div class="bubble-en">Please write it down.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('もう一度おねがいします。ゆっくりおねがいします。')">聞く</button>
+      </div>
+    </div>
+
+    <div class="situation-card">
+      <div class="card-header"><span class="card-icon">📞</span><div><div class="card-title">遅刻・欠勤の連絡</div><div class="card-sub">Calling in late / absent</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">すみません、今日<span class="key-phrase">具合が悪くて</span>、<span class="key-phrase">お休みをいただけますか</span>？</div>
+            <div class="bubble-ruby">Sumimasen, kyō guai ga warukute, oyasumi wo itadakemasu ka?</div>
+            <div class="bubble-en">I'm sorry, I'm not feeling well today. May I take the day off?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('すみません、今日具合が悪くてお休みをいただけますか。')">聞く</button>
+        <div class="tip-box">できるだけ<strong>早く</strong>（シフト開始の1時間前まで）連絡しましょう。<br><em>Call as early as possible (at least 1 hour before your shift).</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vocab-section">
+    <h3>単語 Vocabulary</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">面接</div><div class="vocab-ruby">めんせつ</div><div class="vocab-en">job interview</div></div>
+      <div class="vocab-card"><div class="vocab-jp">アルバイト</div><div class="vocab-ruby">あるばいと</div><div class="vocab-en">part-time job</div></div>
+      <div class="vocab-card"><div class="vocab-jp">シフト</div><div class="vocab-ruby">しふと</div><div class="vocab-en">work shift/schedule</div></div>
+      <div class="vocab-card"><div class="vocab-jp">時給</div><div class="vocab-ruby">じきゅう</div><div class="vocab-en">hourly wage</div></div>
+      <div class="vocab-card"><div class="vocab-jp">遅刻</div><div class="vocab-ruby">ちこく</div><div class="vocab-en">being late</div></div>
+      <div class="vocab-card"><div class="vocab-jp">欠勤</div><div class="vocab-ruby">けっきん</div><div class="vocab-en">absence from work</div></div>
+      <div class="vocab-card"><div class="vocab-jp">制服</div><div class="vocab-ruby">せいふく</div><div class="vocab-en">uniform</div></div>
+      <div class="vocab-card"><div class="vocab-jp">敬語</div><div class="vocab-ruby">けいご</div><div class="vocab-en">polite/formal Japanese</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     🏠 生活
+═══════════════════════════════════════════ -->
+<section class="section" id="section-life">
+  <div class="hero">
+    <h1>🏠 生活で使う日本語</h1>
+    <p>Daily life Japanese / Cuộc sống hàng ngày / 日常生活日语</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="filterCards('life','all',this)">すべて</span>
+      <span class="hero-chip" onclick="filterCards('life','ur',this)">🏢 UR賃貸</span>
+      <span class="hero-chip" onclick="filterCards('life','furealestate',this)">🌍 外国人向け不動産</span>
+      <span class="hero-chip" onclick="filterCards('life','rent',this)">🏘️ 一般賃貸</span>
+      <span class="hero-chip" onclick="filterCards('life','transport',this)">🚃 交通</span>
+    </div>
+  </div>
+
+  <div class="situation-grid" id="life-cards">
+
+    <!-- ══ UR賃貸住宅 大特集 ══ -->
+    <div class="situation-card" data-cat="ur" style="grid-column:1/-1">
+      <div class="card-header" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB)">
+        <span class="card-icon">🏢</span>
+        <div>
+          <div class="card-title" style="font-size:17px">UR賃貸住宅 — 外国人でも借りやすい！</div>
+          <div class="card-sub">UR Urban Renaissance Agency / 都市再生機構</div>
+        </div>
+      </div>
+      <div class="dialogue-block">
+
+        <!-- UR特徴まとめ -->
+        <div style="background:linear-gradient(135deg,#1565C0,#0D47A1);border-radius:14px;padding:18px;margin-bottom:16px;color:#fff">
+          <div style="font-size:15px;font-weight:700;margin-bottom:12px;color:#BBDEFB">⭐ URのメリット / Why UR is great for foreigners</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#FFD54F;margin-bottom:4px">✅ 保証人不要</div>
+              <div style="font-size:12px;color:#BBDEFB">日本人の保証人がいなくてもOK！<br><em style="font-size:11px;opacity:.8">No Japanese guarantor needed!</em></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#FFD54F;margin-bottom:4px">✅ 礼金ゼロ</div>
+              <div style="font-size:12px;color:#BBDEFB">礼金がかからない！<br><em style="font-size:11px;opacity:.8">No key money (礼金) required!</em></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#FFD54F;margin-bottom:4px">✅ 仲介手数料ゼロ</div>
+              <div style="font-size:12px;color:#BBDEFB">不動産仲介料なし<br><em style="font-size:11px;opacity:.8">No agency/brokerage fees!</em></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#FFD54F;margin-bottom:4px">✅ 更新料ゼロ</div>
+              <div style="font-size:12px;color:#BBDEFB">更新するときもお金がかからない<br><em style="font-size:11px;opacity:.8">No renewal fees either!</em></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#A5D6A7;margin-bottom:4px">⚠️ 必要条件</div>
+              <div style="font-size:12px;color:#BBDEFB">月収が家賃の4倍以上<br>（または貯金が100万円以上）<br><em style="font-size:11px;opacity:.8">Monthly income = 4× rent or savings ≥1M yen</em></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:10px">
+              <div style="font-weight:700;color:#A5D6A7;margin-bottom:4px">⚠️ 外国人条件</div>
+              <div style="font-size:12px;color:#BBDEFB">在留資格があればOK<br>永住者・定住者・就労ビザ等<br><em style="font-size:11px;opacity:.8">Valid residence status required</em></div>
+            </div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:#90CAF9">🌐 UR公式サイト：<strong>ur-net.go.jp</strong>　📞 UR賃貸住宅コールセンター：<strong>0120-000-761</strong>（無料）</div>
+        </div>
+
+        <!-- UR申込の会話 -->
+        <div style="font-size:12px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">💬 UR営業センターでの会話</div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">UR賃貸住宅に<span class="key-phrase">申し込みたい</span>のですが、外国人でも<span class="key-phrase">大丈夫ですか</span>？</div>
+            <div class="bubble-ruby">UR chintai jūtaku ni mōshi-komitai no desu ga, gaikokujin demo daijōbu desu ka?</div>
+            <div class="bubble-en">I'd like to apply for a UR rental. Is it okay for foreigners?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">UR担当者</div>
+            <div class="bubble bubble-jp">はい、大丈夫です。<span class="key-phrase">在留カード</span>と<span class="key-phrase">収入を証明するもの</span>をご準備ください。<span class="key-phrase">保証人は不要</span>です。</div>
+            <div class="bubble-en">Yes, that's fine. Please prepare your residence card and proof of income. No guarantor is required.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">礼金や仲介手数料</span>はかかりますか？</div>
+            <div class="bubble-en">Are there key money or agency fees?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">いいえ、URは<span class="key-phrase">礼金・仲介手数料・更新料すべてゼロ</span>です。</div>
+            <div class="bubble-en">No. UR has zero key money, agency fees, and renewal fees.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('UR賃貸住宅に申し込みたいのですが、外国人でも大丈夫ですか？保証人は必要ですか？')">聞く</button>
+
+        <!-- UR申込に必要なもの -->
+        <div style="margin-top:14px;background:#EEF6FF;border:1.5px solid #90CAF9;border-radius:10px;padding:12px;font-size:13px;line-height:1.9">
+          <div style="font-weight:700;color:#1565C0;margin-bottom:6px">📋 申込に必要な書類</div>
+          <div>✅ 在留カード（有効期限あり）</div>
+          <div>✅ パスポート</div>
+          <div>✅ 収入証明（給与明細3ヶ月分、または源泉徴収票）</div>
+          <div>✅ または、貯金通帳のコピー（残高100万円以上）</div>
+          <div style="color:#888;font-size:11px;margin-top:6px"><em>Required: Valid residence card, passport, proof of income (3 months' pay stubs or tax certificate), or bank book showing savings ≥1 million yen</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 外国人向け不動産 ══ -->
+    <div class="situation-card" data-cat="furealestate" style="grid-column:1/-1">
+      <div class="card-header" style="background:linear-gradient(135deg,#E8F5E9,#DCEDC8)">
+        <span class="card-icon">🌍</span>
+        <div>
+          <div class="card-title" style="font-size:17px">外国人対応の不動産・サービス</div>
+          <div class="card-sub">Real estate services for foreigners</div>
+        </div>
+      </div>
+      <div class="dialogue-block">
+
+        <!-- 民間不動産の問題説明 -->
+        <div style="background:#FFF3E0;border:1.5px solid #FFB74D;border-radius:10px;padding:12px;margin-bottom:14px;font-size:13px;line-height:1.8">
+          <div style="font-weight:700;color:#E65100;margin-bottom:4px">⚠️ 民間の不動産では…</div>
+          <div>日本の民間賃貸では、外国人は<strong>断られることがある</strong>のが現実です。</div>
+          <div>よくある理由：「日本人の保証人が必要」「言葉の心配」「習慣の違い」など</div>
+          <div style="color:#888;font-size:11px;margin-top:4px"><em>Unfortunately, foreigners are sometimes refused at private rental agencies. Common reasons: "need a Japanese guarantor," language concerns, or cultural differences.</em></div>
+        </div>
+
+        <!-- 外国人向けサービス一覧 -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:14px">
+          <div style="background:#fff;border:1.5px solid #A5D6A7;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#2E7D32;margin-bottom:4px">🏢 UR賃貸住宅</div>
+            <div style="font-size:12px;line-height:1.7">保証人不要・礼金なし・公共機関<br>全国に約70万戸<br><a href="https://www.ur-net.go.jp" target="_blank" style="color:#1565C0;font-size:11px">ur-net.go.jp</a></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #90CAF9;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#1565C0;margin-bottom:4px">🏠 公営住宅（都営・市営）</div>
+            <div style="font-size:12px;line-height:1.7">自治体が運営する低家賃住宅<br>永住者・定住者等が対象<br>抽選制（倍率が高い）</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #CE93D8;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#6A1B9A;margin-bottom:4px">🌐 外国人向け不動産サイト</div>
+            <div style="font-size:12px;line-height:1.7"><strong>Suumo（外国語対応）</strong><br><strong>HOME'S 外国人可</strong><br><strong>gaijinpot homes</strong>（英語）<br><strong>REAL ESTATE JAPAN</strong></div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #FFD54F;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#E65100;margin-bottom:4px">🤝 外国人対応不動産会社</div>
+            <div style="font-size:12px;line-height:1.7">多言語対応のエージェント<br>「外国人可」物件専門<br>保証会社の紹介もしてくれる</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #EF9A9A;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#C62828;margin-bottom:4px">📋 外国人専用保証会社</div>
+            <div style="font-size:12px;line-height:1.7">日本人保証人の代わりになる<br>LICC・ジェイリース等<br>（審査あり・料金あり）</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid #A5D6A7;border-radius:12px;padding:12px">
+            <div style="font-weight:700;color:#2E7D32;margin-bottom:4px">🏘️ シェアハウス</div>
+            <div style="font-size:12px;line-height:1.7">初期費用が少ない<br>保証人不要が多い<br>国際交流の機会あり</div>
+          </div>
+        </div>
+
+        <!-- 不動産会社での会話 -->
+        <div style="font-size:12px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">💬 外国人対応不動産でのやりとり</div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">外国人でも<span class="key-phrase">借りられる物件</span>はありますか？</div>
+            <div class="bubble-ruby">Gaikokujin demo karireru bukken wa arimasu ka?</div>
+            <div class="bubble-en">Are there properties that foreigners can rent?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">はい、<span class="key-phrase">外国人可</span>の物件をご紹介できます。<span class="key-phrase">保証会社</span>を利用すれば<span class="key-phrase">保証人は不要</span>です。</div>
+            <div class="bubble-en">Yes, we can introduce properties that accept foreigners. If you use a guarantee company, no guarantor is needed.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">初期費用</span>はどのくらいかかりますか？</div>
+            <div class="bubble-ruby">Shoki hiyō wa dono kurai kakarimasu ka?</div>
+            <div class="bubble-en">How much will the initial costs be?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">敷金1ヶ月・礼金1ヶ月・<span class="key-phrase">前家賃</span>1ヶ月・<span class="key-phrase">仲介手数料</span>1ヶ月が目安です。</div>
+            <div class="bubble-en">Typically: 1 month security deposit + 1 key money + 1 month advance rent + 1 month agency fee.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('外国人でも借りられる物件はありますか？初期費用はどのくらいかかりますか？')">聞く</button>
+
+        <!-- 初期費用比較 -->
+        <div style="margin-top:12px;background:#F5F5F5;border-radius:10px;padding:12px;font-size:13px">
+          <div style="font-weight:700;margin-bottom:8px">💴 初期費用の比較（家賃7万円の場合）</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#FDECEA;border-radius:8px;padding:10px;border:1px solid #EF9A9A">
+              <div style="font-weight:700;color:#C62828;margin-bottom:4px">民間賃貸（一般）</div>
+              <div style="font-size:12px;line-height:1.9">敷金：7万円<br>礼金：7万円<br>仲介手数料：7万円<br>前家賃：7万円<br><strong style="color:#C62828">合計：約28万円〜</strong></div>
+            </div>
+            <div style="background:#E8F5E9;border-radius:8px;padding:10px;border:1px solid #A5D6A7">
+              <div style="font-weight:700;color:#2E7D32;margin-bottom:4px">UR賃貸</div>
+              <div style="font-size:12px;line-height:1.9">敷金：7万円（2ヶ月分）<br>礼金：<strong>0円</strong> ✅<br>仲介手数料：<strong>0円</strong> ✅<br>前家賃：7万円<br><strong style="color:#2E7D32">合計：約21万円〜</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box">UR・外国人対応不動産を探すときは「外国人歓迎」「外国人可」「保証人不要」のキーワードで検索してみましょう。<br><em>Search for properties with keywords: 外国人歓迎 (foreigners welcome), 外国人可 (foreigners OK), 保証人不要 (no guarantor needed).</em></div>
+      </div>
+    </div>
+
+    <!-- アパート一般 -->
+    <div class="situation-card" data-cat="rent">
+      <div class="card-header"><span class="card-icon">🏘️</span><div><div class="card-title">アパートを借りる（一般）</div><div class="card-sub">Renting an apartment (general)</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">1LDKの部屋を<span class="key-phrase">探しています</span>。<span class="key-phrase">家賃</span>はいくらですか？</div>
+            <div class="bubble-en">I'm looking for a 1LDK. What's the rent?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">敷金2ヶ月・礼金1ヶ月</span>です。</div>
+            <div class="bubble-en">Security deposit: 2 months, Key money: 1 month.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">ペット可</span>の物件はありますか？</div>
+            <div class="bubble-en">Are there any pet-friendly properties?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('一LDKの部屋を探しています。家賃はいくらですか？ペット可の物件はありますか？')">聞く</button>
+        <div class="tip-box">「外国人歓迎」「保証人不要」「外国人可」の物件を探しましょう。外国人専用の保証会社（ジェイリース等）を利用する方法もあります。</div>
+      </div>
+    </div>
+
+    <!-- 電車・バス -->
+    <div class="situation-card" data-cat="transport">
+      <div class="card-header"><span class="card-icon">🚃</span><div><div class="card-title">電車・バスに乗る</div><div class="card-sub">Taking trains and buses</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">〇〇えきまで<span class="key-phrase">いくらですか</span>？</div>
+            <div class="bubble-en">How much is it to 〇〇 station?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">〇〇行きは<span class="key-phrase">何番線</span>ですか？</div>
+            <div class="bubble-en">Which platform for 〇〇?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('〇〇駅まで行きたいです。何番線ですか？')">聞く</button>
+      </div>
+    </div>
+
+  </div><!-- end life-cards -->
+
+  <div class="vocab-section">
+    <h3>単語 Vocabulary — 住まい・交通</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">家賃</div><div class="vocab-ruby">やちん</div><div class="vocab-en">rent</div></div>
+      <div class="vocab-card"><div class="vocab-jp">敷金</div><div class="vocab-ruby">しきん</div><div class="vocab-en">security deposit</div></div>
+      <div class="vocab-card"><div class="vocab-jp">礼金</div><div class="vocab-ruby">れいきん</div><div class="vocab-en">key money (non-refundable)</div></div>
+      <div class="vocab-card"><div class="vocab-jp">保証人</div><div class="vocab-ruby">ほしょうにん</div><div class="vocab-en">guarantor</div></div>
+      <div class="vocab-card"><div class="vocab-jp">保証会社</div><div class="vocab-ruby">ほしょうがいしゃ</div><div class="vocab-en">guarantee company</div></div>
+      <div class="vocab-card"><div class="vocab-jp">仲介手数料</div><div class="vocab-ruby">ちゅうかいてすうりょう</div><div class="vocab-en">agency/brokerage fee</div></div>
+      <div class="vocab-card"><div class="vocab-jp">外国人可</div><div class="vocab-ruby">がいこくじんか</div><div class="vocab-en">foreigners accepted</div></div>
+      <div class="vocab-card"><div class="vocab-jp">初期費用</div><div class="vocab-ruby">しょきひよう</div><div class="vocab-en">initial costs (move-in)</div></div>
+      <div class="vocab-card"><div class="vocab-jp">更新料</div><div class="vocab-ruby">こうしんりょう</div><div class="vocab-en">renewal fee</div></div>
+      <div class="vocab-card"><div class="vocab-jp">定期券</div><div class="vocab-ruby">ていきけん</div><div class="vocab-en">commuter pass</div></div>
+      <div class="vocab-card"><div class="vocab-jp">乗り換え</div><div class="vocab-ruby">のりかえ</div><div class="vocab-en">transfer (trains)</div></div>
+      <div class="vocab-card"><div class="vocab-jp">物件</div><div class="vocab-ruby">ぶっけん</div><div class="vocab-en">property / unit</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     👨‍👩‍👧‍👦 家族で学ぶ N4日常会話
+═══════════════════════════════════════════ -->
+<section class="section" id="section-family">
+  <div class="hero">
+    <h1>👨‍👩‍👧‍👦 家族で学ぶ N4日常会話</h1>
+    <p>Family Japanese for daily life — N4 level / Hội thoại gia đình / 家庭日语会话</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="filterCards('family','all',this)">すべて</span>
+      <span class="hero-chip" onclick="filterCards('family','morning',this)">🌅 朝・学校</span>
+      <span class="hero-chip" onclick="filterCards('family','neighbor',this)">🏘️ 近所・挨拶</span>
+      <span class="hero-chip" onclick="filterCards('family','shopping',this)">🛒 買い物・外食</span>
+      <span class="hero-chip" onclick="filterCards('family','trouble',this)">🆘 困ったとき</span>
+      <span class="hero-chip" onclick="filterCards('family','health',this)">🏃 健康・体調</span>
+    </div>
+  </div>
+
+  <!-- 使い方案内 -->
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:center">
+    <div style="font-size:32px">👨‍👩‍👧</div>
+    <div style="font-size:13px;line-height:1.8">
+      <strong>使い方：</strong>家族で声に出して練習しましょう！「▶ 聞く」ボタンで正しい発音が確認できます。<br>
+      <em style="color:var(--text-soft)">How to use: Practice by speaking aloud with your family! Use the ▶ Listen button to check pronunciation.</em><br>
+      <span style="background:var(--yellow);padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700">このページの会話を覚えれば、日常生活で困りません！</span>
+    </div>
+  </div>
+
+  <div class="situation-grid" id="family-cards">
+
+    <!-- ══ 朝の家族会話 ══ -->
+    <div class="situation-card" data-cat="morning" style="grid-column:1/-1">
+      <div class="card-header" style="background:linear-gradient(135deg,#FFF9C4,#FFFDE7)">
+        <span class="card-icon">🌅</span>
+        <div><div class="card-title">朝の会話 — 学校・仕事の準備</div><div class="card-sub">Morning family conversation</div></div>
+      </div>
+      <div class="dialogue-block">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">🏠 シーン1：朝起きる Morning wake-up</div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="speaker-label">親 (Parent)</div>
+                <div class="bubble bubble-jp"><span class="key-phrase">起きなさい</span>！もう7時だよ。</div>
+                <div class="bubble-ruby">Okinasai! Mō shichi-ji da yo.</div>
+                <div class="bubble-en">Wake up! It's already 7 o'clock.</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="speaker-label">子ども (Child)</div>
+                <div class="bubble bubble-jp">あと<span class="key-phrase">5分だけ</span>…。</div>
+                <div class="bubble-en">Just 5 more minutes...</div>
+              </div>
+            </div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">だめ！<span class="key-phrase">学校に遅れるよ</span>。早く<span class="key-phrase">朝ごはんを食べなさい</span>。</div>
+                <div class="bubble-en">No! You'll be late for school. Eat breakfast quickly.</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('起きなさい！もう七時だよ。学校に遅れるよ。')">聞く</button>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">🎒 シーン2：学校の準備 Getting ready</div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">お母さん、<span class="key-phrase">今日の給食費</span>を<span class="key-phrase">払ってもらえる</span>？</div>
+                <div class="bubble-ruby">Okāsan, kyō no kyūshoku-dai wo haratte moraeru?</div>
+                <div class="bubble-en">Mom, can you pay today's lunch fee?</div>
+              </div>
+            </div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">あ、そうか。<span class="key-phrase">いくら</span>？</div>
+                <div class="bubble-en">Oh, right. How much?</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">4,500円。<span class="key-phrase">封筒に入れて</span>ランドセルに<span class="key-phrase">入れておいて</span>。</div>
+                <div class="bubble-en">4,500 yen. Please put it in an envelope and put it in my bag.</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('お母さん、今日の給食費を払ってもらえる？')">聞く</button>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <div style="font-size:12px;font-weight:700;color:var(--text-soft);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">📝 N4 ポイント：〜なさい・〜てもらえる？</div>
+          <div style="background:#FFFDE7;border-left:4px solid #F0D040;border-radius:0 8px 8px 0;padding:10px 12px;font-size:13px">
+            <div>🔸 <strong>〜なさい</strong>：親が子どもに命令するときの表現（"You must ~"）</div>
+            <div>🔸 <strong>〜てもらえる？</strong>：カジュアルな依頼（"Can you ~ for me?"）</div>
+            <div>🔸 <strong>〜ておく</strong>：前もって準備しておく（"Do ~ in advance"）</div>
+            <div style="color:#888;font-size:11px;margin-top:4px"><em>〜なさい = parental command / 〜てもらえる？ = casual request / 〜ておく = do in advance/preparation</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 学校の先生との会話 ══ -->
+    <div class="situation-card" data-cat="morning">
+      <div class="card-header" style="background:#FFF9C4"><span class="card-icon">📚</span><div>
+        <div class="card-title">先生との会話</div>
+        <div class="card-sub">Talking with teachers (N4)</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">先生、うちの子が<span class="key-phrase">学校に慣れていない</span>ようで、<span class="key-phrase">心配しています</span>。</div>
+            <div class="bubble-ruby">Sensei, uchi no ko ga gakkō ni narete inai yō de, shinpai shite imasu.</div>
+            <div class="bubble-en">Teacher, my child doesn't seem to be used to school, and I'm worried.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">そうですか。<span class="key-phrase">少しずつ慣れてきています</span>よ。<span class="key-phrase">何か困ったことがあれば</span>いつでもご相談ください。</div>
+            <div class="bubble-en">I see. She/He is gradually getting used to it. If anything is troubling you, please consult with us anytime.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">ありがとうございます。日本語が<span class="key-phrase">まだ上手ではないので</span>、<span class="key-phrase">サポートしていただけると</span>助かります。</div>
+            <div class="bubble-en">Thank you. Since my Japanese isn't very good yet, it would be a great help if you could support us.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('先生、うちの子が学校に慣れていないようで、心配しています。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 近所の挨拶 ══ -->
+    <div class="situation-card" data-cat="neighbor">
+      <div class="card-header" style="background:#E8F5E9"><span class="card-icon">🏘️</span><div>
+        <div class="card-title">近所への挨拶・引越し</div>
+        <div class="card-sub">Greeting neighbors / moving in</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-polite">ていねい語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">はじめまして。先日<span class="key-phrase">引っ越してきました</span>〇〇と申します。<span class="key-phrase">よろしくお願いします</span>。</div>
+            <div class="bubble-ruby">Hajimemashite. Senjitsu hikkoshite kimashita 〇〇 to mōshimasu. Yoroshiku onegai shimasu.</div>
+            <div class="bubble-en">Nice to meet you. I'm 〇〇, who just moved in recently. I look forward to being your neighbor.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">子どもが<span class="key-phrase">うるさくしてしまうかもしれません</span>が、よろしくお願いします。</div>
+            <div class="bubble-en">My children might be noisy at times, but I appreciate your understanding.</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">いいえ、こちらこそ。<span class="key-phrase">わからないことがあれば</span>何でも聞いてください。</div>
+            <div class="bubble-en">Not at all. If there's anything you don't understand, please feel free to ask.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('はじめまして。先日引っ越してきました。よろしくお願いします。')">聞く</button>
+        <div class="tip-box">引越しのとき、<strong>お菓子や小さなプレゼント</strong>を持って挨拶する習慣があります。<br><em>It's customary to bring a small gift (sweets) when introducing yourself to neighbors after moving.</em></div>
+      </div>
+    </div>
+
+    <!-- ══ 日常の近所会話 ══ -->
+    <div class="situation-card" data-cat="neighbor">
+      <div class="card-header" style="background:#E8F5E9"><span class="card-icon">☀️</span><div>
+        <div class="card-title">日常の近所会話</div>
+        <div class="card-sub">Daily neighborhood chat</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">お隣さん</div>
+            <div class="bubble bubble-jp">こんにちは！<span class="key-phrase">最近どうですか</span>？日本の生活は<span class="key-phrase">慣れましたか</span>？</div>
+            <div class="bubble-en">Hello! How have you been recently? Have you gotten used to life in Japan?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">おかげさまで<span class="key-phrase">少しずつ慣れてきました</span>。でも、<span class="key-phrase">ごみの出し方</span>など、<span class="key-phrase">まだわからないことが多くて</span>…。</div>
+            <div class="bubble-en">Thanks to you, I'm gradually getting used to it. But there are still many things I don't understand, like how to put out garbage...</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">あ、<span class="key-phrase">わからないことがあれば</span>いつでも聞いてくださいね！</div>
+            <div class="bubble-en">Oh, if you have anything you don't understand, please ask me anytime!</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('おかげさまで少しずつ慣れてきました。まだわからないことが多くて困っています。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ スーパー・買い物 ══ -->
+    <div class="situation-card" data-cat="shopping">
+      <div class="card-header" style="background:#FFF3E0"><span class="card-icon">🛒</span><div>
+        <div class="card-title">スーパー・日用品の買い物</div>
+        <div class="card-sub">Grocery &amp; daily shopping</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この<span class="key-phrase">賞味期限</span>はいつですか？</div>
+            <div class="bubble-ruby">Kono shōmi-kigen wa itsu desu ka?</div>
+            <div class="bubble-en">What is the expiry date on this?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">〇〇はどこに<span class="key-phrase">売っていますか</span>？</div>
+            <div class="bubble-en">Where is 〇〇 sold?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">これ、<span class="key-phrase">いくら引き</span>になっていますか？</div>
+            <div class="bubble-en">How much of a discount is this?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">ポイントカード</span>はありますか？</div>
+            <div class="bubble-en">Do you have a point card?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('この賞味期限はいつですか？ポイントカードはありますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 外食 ══ -->
+    <div class="situation-card" data-cat="shopping">
+      <div class="card-header" style="background:#FFF3E0"><span class="card-icon">🍜</span><div>
+        <div class="card-title">レストラン・外食</div>
+        <div class="card-sub">Eating out with family</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">4人で</span>お願いします。</div>
+            <div class="bubble-en">Table for 4, please.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">子ども用の<span class="key-phrase">椅子</span>はありますか？</div>
+            <div class="bubble-en">Do you have a child's chair?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">〇〇の<span class="key-phrase">アレルギーがあります</span>。入っていますか？</div>
+            <div class="bubble-en">We have an allergy to 〇〇. Does this contain it?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">別々に</span>払えますか？</div>
+            <div class="bubble-en">Can we pay separately?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('4人でお願いします。子ども用の椅子はありますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 困ったとき ══ -->
+    <div class="situation-card" data-cat="trouble">
+      <div class="card-header" style="background:#FDECEA"><span class="card-icon">🆘</span><div>
+        <div class="card-title">困ったとき・トラブル</div>
+        <div class="card-sub">When something goes wrong</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <span class="badge badge-easy">やさしい日本語</span>
+            <div class="bubble bubble-jp" style="margin-top:4px">〇〇が<span class="key-phrase">こわれました</span>。<span class="key-phrase">なおしてもらえますか</span>？</div>
+            <div class="bubble-en">〇〇 is broken. Can you fix it?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">水道が<span class="key-phrase">止まってしまいました</span>。<span class="key-phrase">どうすればいいですか</span>？</div>
+            <div class="bubble-en">The water has stopped. What should I do?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">鍵を<span class="key-phrase">なくしてしまいました</span>。管理会社に<span class="key-phrase">連絡したい</span>のですが。</div>
+            <div class="bubble-en">I've lost my key. I'd like to contact the property management company.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('水道が止まってしまいました。どうすればいいですか？')">聞く</button>
+        <div class="tip-box">アパートのトラブルは<strong>管理会社（かんりがいしゃ）</strong>か<strong>大家さん（おおやさん）</strong>に連絡しましょう。<br><em>For apartment troubles, contact the property management company (管理会社) or landlord (大家さん).</em></div>
+      </div>
+    </div>
+
+    <!-- ══ 子どもの体調 ══ -->
+    <div class="situation-card" data-cat="health">
+      <div class="card-header" style="background:#E8F5E9"><span class="card-icon">🏃</span><div>
+        <div class="card-title">子どもの体調・健康</div>
+        <div class="card-sub">Children's health</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">先生（学校）</div>
+            <div class="bubble bubble-jp">お子さんが<span class="key-phrase">熱を出して</span>います。<span class="key-phrase">お迎えに来ていただけますか</span>？</div>
+            <div class="bubble-en">Your child has a fever. Could you come pick him/her up?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">わかりました。<span class="key-phrase">すぐに行きます</span>。何度ありますか？</div>
+            <div class="bubble-en">Understood. I'll come right away. What temperature does she/he have?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">38.5度です。<span class="key-phrase">病院に連れていくほうがいい</span>と思います。</div>
+            <div class="bubble-en">38.5 degrees. I think it's better to take him/her to the hospital.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('お子さんが熱を出しています。お迎えに来ていただけますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 家族の日常会話（総合） ══ -->
+    <div class="situation-card" data-cat="health" style="grid-column:1/-1">
+      <div class="card-header" style="background:linear-gradient(135deg,#E3F2FD,#E8F5E9)">
+        <span class="card-icon">💬</span>
+        <div><div class="card-title">家族の総合 N4会話チャレンジ</div><div class="card-sub">Full family conversation — N4 level</div></div>
+      </div>
+      <div class="dialogue-block">
+        <div style="background:#F0F4FA;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px">
+          <strong>📖 シーン：日曜日の午後、家族で話している</strong><br>
+          <em style="color:#888">Scene: Sunday afternoon, family conversation</em>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="speaker-label">お父さん (Father)</div>
+                <div class="bubble bubble-jp">今日の夕ご飯、<span class="key-phrase">何が食べたい</span>？</div>
+                <div class="bubble-en">What do you want to eat for dinner tonight?</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="speaker-label">子ども</div>
+                <div class="bubble bubble-jp">カレー！<span class="key-phrase">ずっと食べたかった</span>んだ！</div>
+                <div class="bubble-en">Curry! I've been wanting to eat it for so long!</div>
+              </div>
+            </div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="speaker-label">お母さん (Mother)</div>
+                <div class="bubble bubble-jp">じゃあ、<span class="key-phrase">一�に作ろうか</span>。スーパーに<span class="key-phrase">買い物に行かなきゃ</span>。</div>
+                <div class="bubble-en">Then, shall we make it together? I need to go shopping at the supermarket.</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp"><span class="key-phrase">一緒に行く！</span>にんじんを<span class="key-phrase">切るのを手伝う</span>よ。</div>
+                <div class="bubble-en">I'll come too! I'll help cut the carrots.</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('今日の夕ごはん、何が食べたい？カレー！ずっと食べたかったんだ！')">聞く</button>
+          </div>
+          <div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="speaker-label">お父さん</div>
+                <div class="bubble bubble-jp">そういえば、学校は<span class="key-phrase">どう？楽しくなってきた</span>？</div>
+                <div class="bubble-en">By the way, how's school? Are you starting to enjoy it?</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">うん！友達も<span class="key-phrase">できてきた</span>よ。でも、日本語がまだ<span class="key-phrase">難しくて</span>…。</div>
+                <div class="bubble-en">Yeah! I've started making friends. But Japanese is still hard...</div>
+              </div>
+            </div>
+            <div class="dialogue-row">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp"><span class="key-phrase">大丈夫だよ</span>。毎日少しずつ<span class="key-phrase">練習すれば</span>、きっと上手になるよ。</div>
+                <div class="bubble-en">You'll be fine. If you practice a little every day, I'm sure you'll get better.</div>
+              </div>
+            </div>
+            <div class="dialogue-row right">
+              <div class="bubble-wrap">
+                <div class="bubble bubble-jp">うん、<span class="key-phrase">頑張ってみる</span>！</div>
+                <div class="bubble-en">Yeah, I'll try my best!</div>
+              </div>
+            </div>
+            <button class="audio-btn" onclick="speak('大丈夫だよ。毎日少しずつ練習すれば、きっと上手になるよ。')">聞く</button>
+          </div>
+        </div>
+
+        <!-- N4ポイント解説 -->
+        <div style="margin-top:16px;background:#FFFDE7;border:1.5px solid #F0D040;border-radius:10px;padding:14px;font-size:13px">
+          <div style="font-weight:700;margin-bottom:8px">📋 この会話で学べるN4表現</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div>🔸 <strong>〜たかった</strong>：ずっと食べたかった (wanted to eat for a long time)</div>
+            <div>🔸 <strong>〜なきゃ</strong>：行かなきゃ = 行かなければならない (have to go)</div>
+            <div>🔸 <strong>〜てくる</strong>：楽しくなってきた (has become, is becoming)</div>
+            <div>🔸 <strong>〜できてきた</strong>：友達ができてきた (friends are being made)</div>
+            <div>🔸 <strong>〜すれば</strong>：練習すれば (if you practice)</div>
+            <div>🔸 <strong>〜てみる</strong>：頑張ってみる (I'll try doing it)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end family-cards -->
+
+  <!-- 家族会話 単語 -->
+  <div class="vocab-section" style="margin-top:16px">
+    <h3>単語 — 家族・日常生活</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">大家さん</div><div class="vocab-ruby">おおやさん</div><div class="vocab-en">landlord</div></div>
+      <div class="vocab-card"><div class="vocab-jp">管理会社</div><div class="vocab-ruby">かんりがいしゃ</div><div class="vocab-en">property management company</div></div>
+      <div class="vocab-card"><div class="vocab-jp">賞味期限</div><div class="vocab-ruby">しょうみきげん</div><div class="vocab-en">best-before date</div></div>
+      <div class="vocab-card"><div class="vocab-jp">給食費</div><div class="vocab-ruby">きゅうしょくひ</div><div class="vocab-en">school lunch fee</div></div>
+      <div class="vocab-card"><div class="vocab-jp">お迎え</div><div class="vocab-ruby">おむかえ</div><div class="vocab-en">picking someone up</div></div>
+      <div class="vocab-card"><div class="vocab-jp">ポイントカード</div><div class="vocab-ruby">ぽいんとかーど</div><div class="vocab-en">loyalty/points card</div></div>
+      <div class="vocab-card"><div class="vocab-jp">頑張る</div><div class="vocab-ruby">がんばる</div><div class="vocab-en">to do one's best / try hard</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">慣れる</div><div class="vocab-ruby">なれる</div><div class="vocab-en">to get used to</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">心配する</div><div class="vocab-ruby">しんぱいする</div><div class="vocab-en">to worry</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">修理する</div><div class="vocab-ruby">しゅうりする</div><div class="vocab-en">to repair</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">相談する</div><div class="vocab-ruby">そうだんする</div><div class="vocab-en">to consult</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">連絡する</div><div class="vocab-ruby">れんらくする</div><div class="vocab-en">to contact / get in touch</div><span class="vocab-tag tag-v">V</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════════
+     📚 公共施設・国の機関
+═══════════════════════════════════════════ -->
+<section class="section" id="section-public">
+  <div class="hero">
+    <h1>📚 公共施設・国の機関</h1>
+    <p>Public facilities &amp; government services / Cơ sở công cộng / 公共设施与政府机构</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="filterCards('public','all',this)">すべて</span>
+      <span class="hero-chip" onclick="filterCards('public','library',this)">📖 図書館</span>
+      <span class="hero-chip" onclick="filterCards('public','welfare',this)">🤝 相談・支援</span>
+      <span class="hero-chip" onclick="filterCards('public','edu',this)">🏫 教育・日本語</span>
+      <span class="hero-chip" onclick="filterCards('public','other',this)">🏛️ その他</span>
+    </div>
+  </div>
+
+  <div class="situation-grid" id="public-cards">
+
+    <!-- ══ 図書館 ══ -->
+    <div class="situation-card" data-cat="library" style="grid-column:1/-1">
+      <div class="card-header" style="background:linear-gradient(135deg,#E3F2FD,#F1F8E9)">
+        <span class="card-icon">📖</span>
+        <div>
+          <div class="card-title" style="font-size:17px">図書館 Library</div>
+          <div class="card-sub">無料で使える・外国人もOK / Free to use, open to foreigners</div>
+        </div>
+      </div>
+      <div class="dialogue-block">
+
+        <!-- 東京の図書館ハイライト -->
+        <div style="background:linear-gradient(135deg,#E8F5E9,#F1F8E9);border:2px solid #81C784;border-radius:12px;padding:16px;margin-bottom:16px">
+          <div style="font-size:15px;font-weight:700;color:#2E7D32;margin-bottom:8px">⭐ 東京の図書館はすばらしい！</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #A5D6A7">
+              <div style="font-weight:700;color:#1B5E20;margin-bottom:4px">🏛️ 国立国会図書館</div>
+              <div style="color:#555">日本最大の図書館。<br>蔵書数 約4700万点！<br>国際子ども図書館もあり</div>
+              <div style="font-size:11px;color:#888;margin-top:4px">Japan's largest library. 47M+ items.</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #A5D6A7">
+              <div style="font-weight:700;color:#1B5E20;margin-bottom:4px">📚 都立図書館（中央・多摩）</div>
+              <div style="color:#555">多言語資料が充実。<br>外国語の本・新聞・雑誌あり</div>
+              <div style="font-size:11px;color:#888;margin-top:4px">Multilingual materials available.</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #A5D6A7">
+              <div style="font-weight:700;color:#1B5E20;margin-bottom:4px">🏘️ 区立・市立図書館</div>
+              <div style="color:#555">住民登録があれば<strong>無料</strong>で本を借りられる。<br>PCやWi-Fiも使える場所も</div>
+              <div style="font-size:11px;color:#888;margin-top:4px">Free borrowing with resident card.</div>
+            </div>
+            <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #A5D6A7">
+              <div style="font-weight:700;color:#1B5E20;margin-bottom:4px">💻 電子図書館（デジタル）</div>
+              <div style="color:#555">スマホ・PCで電子書籍を借りられる図書館も増えている</div>
+              <div style="font-size:11px;color:#888;margin-top:4px">E-books available at many libraries.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 図書館カードを作る -->
+        <div style="font-size:12px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">📋 図書館カードを作る Getting a library card</div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="speaker-label">あなた</div>
+            <div class="bubble bubble-jp"><span class="key-phrase">図書館カード</span>を作りたいのですが、どうすればいいですか？</div>
+            <div class="bubble-ruby">Toshokan kādo wo tsukuritai no desu ga, dō sureba ii desu ka?</div>
+            <div class="bubble-en">I'd like to get a library card. What should I do?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">図書館員 (Librarian)</div>
+            <div class="bubble bubble-jp"><span class="key-phrase">住民票</span>か<span class="key-phrase">在留カード</span>をお持ちですか？こちらの<span class="key-phrase">申込書</span>に記入してください。</div>
+            <div class="bubble-en">Do you have your resident certificate or residence card? Please fill in this application form.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">何冊まで<span class="key-phrase">借りられますか</span>？</div>
+            <div class="bubble-ruby">Nansatsu made kariraremasu ka?</div>
+            <div class="bubble-en">How many books can I borrow?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">10冊まで</span>、<span class="key-phrase">2週間</span>借りられます。</div>
+            <div class="bubble-en">You can borrow up to 10 books for 2 weeks.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('図書館カードを作りたいのですが、どうすればいいですか？')">聞く</button>
+
+        <!-- 本を探す -->
+        <div style="margin-top:14px;font-size:12px;font-weight:700;color:var(--text-soft);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">🔍 本を探す Looking for a book</div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">〇〇という<span class="key-phrase">本はありますか</span>？</div>
+            <div class="bubble-en">Do you have a book called 〇〇?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">外国語の本</span>はどこにありますか？</div>
+            <div class="bubble-en">Where are the foreign language books?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この本を<span class="key-phrase">予約したい</span>のですが。</div>
+            <div class="bubble-ruby">Kono hon wo yoyaku shitai no desu ga.</div>
+            <div class="bubble-en">I'd like to reserve this book.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">返却</span>はいつまでですか？</div>
+            <div class="bubble-en">By when do I need to return it?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('外国語の本はどこにありますか？この本を予約したいのですが。')">聞く</button>
+        <div class="tip-box">図書館の利用は<strong>無料</strong>！住民登録をすればカードが作れます。パソコンの使用・Wi-Fi・勉強スペースも使えることが多いです。<br><em>Library use is free! Make a card with your resident registration. PCs, Wi-Fi, and study spaces are often available too.</em></div>
+      </div>
+    </div>
+
+    <!-- ══ ハローワーク ══ -->
+    <div class="situation-card" data-cat="welfare">
+      <div class="card-header"><span class="card-icon">💼</span><div><div class="card-title">ハローワーク</div><div class="card-sub">Public Employment Security Office</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">仕事を探している</span>のですが、どこに相談すればいいですか？</div>
+            <div class="bubble-en">I'm looking for work. Where should I consult?</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">求人票</span>を見て、<span class="key-phrase">ご紹介</span>できます。<span class="key-phrase">在留資格</span>を確認させてください。</div>
+            <div class="bubble-en">We can show you job listings and introduce opportunities. Please let us check your visa status.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('仕事を探しているのですが、相談できますか？')">聞く</button>
+        <div class="tip-box">外国人向けの<strong>多言語対応窓口</strong>があるハローワークもあります。雇用保険の手続きもできます。<br><em>Some Hello Work offices have multilingual counters for foreigners. Unemployment insurance procedures also available.</em></div>
+      </div>
+    </div>
+
+    <!-- ══ 外国人相談センター ══ -->
+    <div class="situation-card" data-cat="welfare">
+      <div class="card-header"><span class="card-icon">🌍</span><div><div class="card-title">外国人相談・支援センター</div><div class="card-sub">Foreign resident consultation centers</div></div></div>
+      <div class="dialogue-block">
+        <div style="background:#E3F2FD;border:1px solid #90CAF9;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;line-height:1.9">
+          <div style="font-weight:700;color:#1565C0;margin-bottom:6px">📞 主な相談窓口</div>
+          <div>🌐 <strong>外国人在留支援センター (FRESC)</strong>：新宿、在留・就労・法律相談</div>
+          <div>📱 <strong>外国人ための情報サイト「LifeInJapan」</strong></div>
+          <div>🏛️ <strong>法テラス（日本司法支援センター）</strong>：法律相談無料</div>
+          <div>📞 <strong>多文化共生総合相談ワンストップセンター</strong>：各都道府県に設置</div>
+          <div style="margin-top:6px;color:#555;font-size:11px"><em>FRESC: Shinjuku, visa/work/legal consultation / Legal aid: free legal consultation / Multicultural centers in each prefecture</em></div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">在留ビザの<span class="key-phrase">更新</span>について<span class="key-phrase">相談したい</span>のですが。</div>
+            <div class="bubble-ruby">Zairyū biza no kōshin ni tsuite sōdan shitai no desu ga.</div>
+            <div class="bubble-en">I'd like to consult about renewing my residence visa.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('在留ビザの更新について相談したいのですが。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 日本語教室・国際交流協会 ══ -->
+    <div class="situation-card" data-cat="edu">
+      <div class="card-header"><span class="card-icon">🇯🇵</span><div><div class="card-title">日本語教室・国際交流協会</div><div class="card-sub">Japanese classes &amp; international centers</div></div></div>
+      <div class="dialogue-block">
+        <div style="background:#FFF8E1;border:1px solid #FFD54F;border-radius:10px;padding:12px;margin-bottom:12px;font-size:13px;line-height:1.9">
+          <div style="font-weight:700;color:#E65100;margin-bottom:6px">📚 無料・安い日本語教室</div>
+          <div>✅ <strong>地域の日本語教室</strong>：市区町村の国際交流協会が運営。無料〜低額</div>
+          <div>✅ <strong>国際交流基金（JF）</strong>：「みんなの日本語」等のコース</div>
+          <div>✅ <strong>NPO・ボランティア日本語教室</strong>：地域に多数あり</div>
+          <div>✅ <strong>オンライン教室</strong>：コスパ良く学べる</div>
+          <div style="color:#888;font-size:11px;margin-top:6px"><em>Community Japanese classes are free or low-cost, run by local international associations. The Japan Foundation also offers courses.</em></div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この近くに<span class="key-phrase">日本語教室</span>はありますか？</div>
+            <div class="bubble-en">Are there any Japanese classes near here?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">無料</span>で通えるところを<span class="key-phrase">教えていただけますか</span>？</div>
+            <div class="bubble-en">Could you tell me about free options I can attend?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('この近くに日本語教室はありますか？無料で通えるところを教えていただけますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 公民館・コミュニティセンター ══ -->
+    <div class="situation-card" data-cat="other">
+      <div class="card-header"><span class="card-icon">🏘️</span><div><div class="card-title">公民館・コミュニティセンター</div><div class="card-sub">Community centers</div></div></div>
+      <div class="dialogue-block">
+        <div style="font-size:13px;line-height:1.9;margin-bottom:10px">
+          <div>✅ 会議室・ホールを<strong>無料または低額</strong>で使える</div>
+          <div>✅ 趣味のサークル・料理教室・語学クラスなど</div>
+          <div>✅ 地域の行事・お祭りの情報も掲示されている</div>
+          <div style="color:#888;font-size:11px;margin-top:4px"><em>Meeting rooms and halls available free or cheaply. Hobby clubs, cooking classes, language classes, and local event info.</em></div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この部屋を<span class="key-phrase">借りたいのですが</span>、どうすれば<span class="key-phrase">申し込めますか</span>？</div>
+            <div class="bubble-en">I'd like to rent this room. How can I apply?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('この部屋を借りたいのですが、どうすれば申し込めますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- ══ 入国管理局（出入国在留管理庁） ══ -->
+    <div class="situation-card" data-cat="other">
+      <div class="card-header"><span class="card-icon">🛂</span><div><div class="card-title">出入国在留管理庁（入管）</div><div class="card-sub">Immigration Services Agency</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">在留資格の<span class="key-phrase">変更</span>をしたいのですが、<span class="key-phrase">必要な書類</span>を教えてください。</div>
+            <div class="bubble-ruby">Zairyū shikaku no henkō wo shitai no desu ga, hitsuyōna shorui wo oshiete kudasai.</div>
+            <div class="bubble-en">I'd like to change my visa status. Please tell me the required documents.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">在留期間が<span class="key-phrase">もうすぐ切れます</span>。<span class="key-phrase">更新</span>の手続きをしたいです。</div>
+            <div class="bubble-en">My residence period is expiring soon. I'd like to renew it.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('在留資格の変更をしたいのですが、必要な書類を教えてください。')">聞く</button>
+        <div class="tip-box">在留期限の<strong>3ヶ月前</strong>から更新の申請ができます。期限を過ぎると<strong>オーバーステイ</strong>になります。<br><em>You can apply for renewal 3 months before expiry. Staying beyond the limit is an overstay violation.</em></div>
+      </div>
+    </div>
+
+    <!-- ══ 年金事務所 ══ -->
+    <div class="situation-card" data-cat="welfare">
+      <div class="card-header"><span class="card-icon">💰</span><div><div class="card-title">年金事務所</div><div class="card-sub">Pension office</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">国民年金</span>に加入しなければなりませんか？</div>
+            <div class="bubble-ruby">Kokumin-nenkin ni kanyū shinakereba narimasen ka?</div>
+            <div class="bubble-en">Do I have to join the national pension?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">帰国するとき、<span class="key-phrase">脱退一時金</span>はもらえますか？</div>
+            <div class="bubble-ruby">Kikoku suru toki, dattai ikkyūkin wa moraemasu ka?</div>
+            <div class="bubble-en">When I return home, can I receive the lump-sum withdrawal payment?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('国民年金に加入しなければなりませんか？帰国するとき脱退一時金はもらえますか？')">聞く</button>
+        <div class="tip-box">日本を離れる前に<strong>脱退一時金</strong>の請求ができます（条件あり）。払った年金が一部戻ってきます。<br><em>You can claim a lump-sum withdrawal payment before leaving Japan (conditions apply). Part of your paid pension is returned.</em></div>
+      </div>
+    </div>
+
+    <!-- ══ 税務署 ══ -->
+    <div class="situation-card" data-cat="other">
+      <div class="card-header"><span class="card-icon">📊</span><div><div class="card-title">税務署・確定申告</div><div class="card-sub">Tax office / final tax return</div></div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">確定申告</span>の<span class="key-phrase">やり方</span>がわかりません。教えていただけますか？</div>
+            <div class="bubble-ruby">Kakutei-shinkoku no yarikata ga wakarimasen.</div>
+            <div class="bubble-en">I don't understand how to file a tax return. Could you explain?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">アルバイトをしているのですが、<span class="key-phrase">税金の申告</span>は必要ですか？</div>
+            <div class="bubble-en">I'm doing part-time work. Do I need to file a tax declaration?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('確定申告のやり方がわかりません。教えていただけますか？')">聞く</button>
+        <div class="tip-box">確定申告は毎年<strong>2月16日〜3月15日</strong>。アルバイトでも年収103万円以上は申告が必要な場合があります。<br><em>Tax return period: Feb 16 - Mar 15. Part-time workers earning over 1.03M yen/year may need to file.</em></div>
+      </div>
+    </div>
+
+  </div><!-- end public-cards -->
+
+  <!-- 公共施設 単語 -->
+  <div class="vocab-section" style="margin-top:16px">
+    <h3>単語 Vocabulary — 公共施設</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">図書館</div><div class="vocab-ruby">としょかん</div><div class="vocab-en">library</div></div>
+      <div class="vocab-card"><div class="vocab-jp">司書</div><div class="vocab-ruby">ししょ</div><div class="vocab-en">librarian</div></div>
+      <div class="vocab-card"><div class="vocab-jp">貸し出し</div><div class="vocab-ruby">かしだし</div><div class="vocab-en">lending / borrowing</div></div>
+      <div class="vocab-card"><div class="vocab-jp">返却</div><div class="vocab-ruby">へんきゃく</div><div class="vocab-en">return (of books etc.)</div></div>
+      <div class="vocab-card"><div class="vocab-jp">予約</div><div class="vocab-ruby">よやく</div><div class="vocab-en">reservation</div></div>
+      <div class="vocab-card"><div class="vocab-jp">延長</div><div class="vocab-ruby">えんちょう</div><div class="vocab-en">extension (due date)</div></div>
+      <div class="vocab-card"><div class="vocab-jp">在留資格</div><div class="vocab-ruby">ざいりゅうしかく</div><div class="vocab-en">visa / residence status</div></div>
+      <div class="vocab-card"><div class="vocab-jp">更新</div><div class="vocab-ruby">こうしん</div><div class="vocab-en">renewal</div></div>
+      <div class="vocab-card"><div class="vocab-jp">確定申告</div><div class="vocab-ruby">かくていしんこく</div><div class="vocab-en">annual tax return</div></div>
+      <div class="vocab-card"><div class="vocab-jp">国民年金</div><div class="vocab-ruby">こくみんねんきん</div><div class="vocab-en">national pension</div></div>
+      <div class="vocab-card"><div class="vocab-jp">相談する</div><div class="vocab-ruby">そうだんする</div><div class="vocab-en">to consult / seek advice</div><span class="vocab-tag tag-v">V</span></div>
+      <div class="vocab-card"><div class="vocab-jp">申し込む</div><div class="vocab-ruby">もうしこむ</div><div class="vocab-en">to apply / register</div><span class="vocab-tag tag-v">V</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     🗣️ N4レベル会話
+═══════════════════════════════════════════ -->
+<section class="section" id="section-n4">
+  <div class="hero">
+    <h1>🗣️ N4レベル会話</h1>
+    <p>JLPT N4 level practical conversations / Hội thoại trình độ N4 / N4级实用会话</p>
+    <div class="hero-chips">
+      <span class="hero-chip active" onclick="filterCards('n4','all',this)">すべて</span>
+      <span class="hero-chip" onclick="filterCards('n4','express',this)">💬 気持ち・意見</span>
+      <span class="hero-chip" onclick="filterCards('n4','reason',this)">🔗 理由・説明</span>
+      <span class="hero-chip" onclick="filterCards('n4','request',this)">🙏 依頼・提案</span>
+      <span class="hero-chip" onclick="filterCards('n4','conditional',this)">🔀 条件・仮定</span>
+    </div>
+  </div>
+
+  <!-- N4レベルとは -->
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start">
+    <div style="font-size:36px;flex-shrink:0">📊</div>
+    <div style="font-size:13px;line-height:1.9">
+      <div style="font-weight:700;font-size:15px;margin-bottom:4px">N4レベルとは？ What is JLPT N4?</div>
+      <div>✅ 基本的な語彙・文法が理解でき、<strong>日常的な場面で会話</strong>ができるレベル</div>
+      <div>✅ 「〜ので」「〜ために」「〜ても」「〜たら」などの複合文が使える</div>
+      <div>✅ 約1,500語の語彙・300の文法項目</div>
+      <div style="color:#888;font-size:11px;margin-top:4px"><em>Can understand basic vocabulary/grammar and have daily conversations. Can use compound sentences like 〜ので, 〜ために, 〜ても, 〜たら. About 1,500 words and 300 grammar points.</em></div>
+    </div>
+  </div>
+
+  <div class="situation-grid" id="n4-cards">
+
+    <!-- 〜ので (reason) -->
+    <div class="situation-card" data-cat="reason">
+      <div class="card-header" style="background:#FFF8E1"><span class="card-icon">🔗</span><div>
+        <div class="card-title">〜ので（理由を説明する）</div>
+        <div class="card-sub">Explaining a reason — polite &amp; natural</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#FFF9C4;border-left:4px solid #F0D040;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <strong>文型：</strong>〜<span class="key-phrase">ので</span>、〜　→ 「〜だから、〜」よりていねい<br>
+          <em style="font-size:11px;color:#888">More polite than 〜から. Use for explanations in formal situations.</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">今日は<span class="key-phrase">具合が悪いので</span>、早退してもいいですか？</div>
+            <div class="bubble-ruby">Kyō wa guai ga warui no de, sōtai shite mo ii desu ka?</div>
+            <div class="bubble-en">I'm not feeling well today, so may I leave early?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">図書館が<span class="key-phrase">閉まっているので</span>、明日来ます。</div>
+            <div class="bubble-en">The library is closed, so I'll come tomorrow.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">引越ししたば<span class="key-phrase">かりなので</span>、まだ慣れていません。</div>
+            <div class="bubble-en">I just moved, so I'm not used to things yet.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('今日は具合が悪いので、早退してもいいですか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜ために (purpose/reason) -->
+    <div class="situation-card" data-cat="reason">
+      <div class="card-header" style="background:#E8F5E9"><span class="card-icon">🎯</span><div>
+        <div class="card-title">〜ために（目的・原因）</div>
+        <div class="card-sub">Purpose / cause</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#DCEDC8;border-left:4px solid #8BC34A;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <strong>文型①：</strong>〜<span class="key-phrase">ために</span>、〜　→ 目的（〜するために）<br>
+          <strong>文型②：</strong>〜<span class="key-phrase">ために</span>、〜　→ 原因（〜たために）<br>
+          <em style="font-size:11px;color:#888">① Purpose: "in order to ~" ② Cause: "because of ~"</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">日本語を<span class="key-phrase">上手になるために</span>、毎日練習しています。</div>
+            <div class="bubble-ruby">Nihongo wo jōzu ni naru tame ni, mainichi renshū shite imasu.</div>
+            <div class="bubble-en">I practice every day in order to improve my Japanese.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">仕事を<span class="key-phrase">見つけるために</span>、ハローワークに行きました。</div>
+            <div class="bubble-en">I went to Hello Work in order to find a job.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('日本語を上手になるために、毎日練習しています。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜たら (conditional) -->
+    <div class="situation-card" data-cat="conditional">
+      <div class="card-header" style="background:#E3F2FD"><span class="card-icon">🔀</span><div>
+        <div class="card-title">〜たら（条件・仮定）</div>
+        <div class="card-sub">Conditional: "if/when ~ then ~"</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#BBDEFB;border-left:4px solid #42A5F5;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <strong>文型：</strong>〜<span class="key-phrase">たら</span>、〜<br>
+          「もし〜なら」より自然な話し言葉<br>
+          <em style="font-size:11px;color:#888">More natural in spoken Japanese than もし〜なら. Used for conditions and sequences.</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">図書館に<span class="key-phrase">着いたら</span>、まず受付に行ってください。</div>
+            <div class="bubble-en">When you arrive at the library, please go to the reception first.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">書類が<span class="key-phrase">そろったら</span>、申請できます。</div>
+            <div class="bubble-en">Once your documents are ready, you can apply.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp"><span class="key-phrase">困ったら</span>、いつでも相談に来てください。</div>
+            <div class="bubble-en">If you're ever in trouble, please come consult us anytime.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('困ったら、いつでも相談に来てください。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜ながら (simultaneous) -->
+    <div class="situation-card" data-cat="express">
+      <div class="card-header" style="background:#F3E5F5"><span class="card-icon">🔄</span><div>
+        <div class="card-title">〜ながら（同時動作）</div>
+        <div class="card-sub">Doing two things at the same time</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#E1BEE7;border-left:4px solid #CE93D8;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <strong>文型：</strong>〜<span class="key-phrase">ながら</span>、〜<br>
+          「〜しながら、〜する」→ 2つのことを同時にする<br>
+          <em style="font-size:11px;color:#888">Doing two actions simultaneously: "while doing ~, I also do ~"</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">音楽を<span class="key-phrase">聴きながら</span>、本を読んでいます。</div>
+            <div class="bubble-en">I read books while listening to music.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">アルバイトを<span class="key-phrase">しながら</span>、日本語を勉強しています。</div>
+            <div class="bubble-en">I study Japanese while doing part-time work.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('アルバイトをしながら、日本語を勉強しています。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜ていただけますか（丁寧依頼） -->
+    <div class="situation-card" data-cat="request">
+      <div class="card-header" style="background:#FFF3E0"><span class="card-icon">🙏</span><div>
+        <div class="card-title">〜ていただけますか（丁寧な依頼）</div>
+        <div class="card-sub">Polite requests — N4 level</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#FFE0B2;border-left:4px solid #FF9800;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <div><strong>基本：</strong>〜<span class="key-phrase">てください</span>　→ Please do ~</div>
+          <div><strong>ていねい：</strong>〜<span class="key-phrase">ていただけますか</span>　→ Could you please ~?</div>
+          <div><strong>さらにていねい：</strong>〜<span class="key-phrase">ていただけないでしょうか</span>　→ Would it be possible to ~?</div>
+          <em style="font-size:11px;color:#888">3 levels of politeness for requests.</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">もう少し<span class="key-phrase">ゆっくり話していただけますか</span>？</div>
+            <div class="bubble-en">Could you please speak a little more slowly?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この書類の書き方を<span class="key-phrase">教えていただけますか</span>？</div>
+            <div class="bubble-en">Could you tell me how to fill in this form?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">予約を<span class="key-phrase">変更していただけないでしょうか</span>。</div>
+            <div class="bubble-en">Would it be possible to change my reservation?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('もう少しゆっくり話していただけますか？この書類の書き方を教えていただけますか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜そうです（様態・伝聞） -->
+    <div class="situation-card" data-cat="express">
+      <div class="card-header" style="background:#E8F5E9"><span class="card-icon">👀</span><div>
+        <div class="card-title">〜そうです（様態・伝聞）</div>
+        <div class="card-sub">Looks like ~ / I heard that ~</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#DCEDC8;border-left:4px solid #8BC34A;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <div><strong>様態（見た感じ）：</strong>Verb stem + <span class="key-phrase">そうです</span>　→ "Looks like it will ~"</div>
+          <div><strong>伝聞（聞いた話）：</strong>Plain form + <span class="key-phrase">そうです</span>　→ "I heard that ~"</div>
+          <em style="font-size:11px;color:#888">様態: judging from appearance / 伝聞: information heard from someone else</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">今日は<span class="key-phrase">雨が降りそうです</span>ね。</div>
+            <div class="bubble-en">It looks like it's going to rain today.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">図書館は外国人も使えると<span class="key-phrase">聞きました</span>。</div>
+            <div class="bubble-en">I heard that foreigners can also use the library.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">この本は<span class="key-phrase">おもしろそうです</span>。読んでみます。</div>
+            <div class="bubble-en">This book looks interesting. I'll try reading it.</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('今日は雨が降りそうですね。この本はおもしろそうです。')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 〜てしまいました（完了・後悔） -->
+    <div class="situation-card" data-cat="express">
+      <div class="card-header" style="background:#FDECEA"><span class="card-icon">😅</span><div>
+        <div class="card-title">〜てしまいました（完了・後悔）</div>
+        <div class="card-sub">Completed action / expressing regret</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div style="background:#FFCDD2;border-left:4px solid #EF9A9A;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:10px;font-size:13px">
+          <strong>文型：</strong>〜<span class="key-phrase">てしまいました</span><br>
+          話し言葉：〜<span class="key-phrase">ちゃいました</span><br>
+          <em style="font-size:11px;color:#888">Expresses that something was done (often with regret). Spoken form: 〜ちゃいました</em>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">図書館の本を<span class="key-phrase">返すのを忘れてしまいました</span>。</div>
+            <div class="bubble-en">I forgot to return the library book.</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">在留カードを<span class="key-phrase">なくしてしまいました</span>。どうすればいいですか？</div>
+            <div class="bubble-en">I lost my residence card. What should I do?</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('在留カードをなくしてしまいました。どうすればいいですか？')">聞く</button>
+      </div>
+    </div>
+
+    <!-- 日常会話 N4 -->
+    <div class="situation-card" data-cat="express">
+      <div class="card-header" style="background:#E3F2FD"><span class="card-icon">☕</span><div>
+        <div class="card-title">日常の会話（N4レベル）</div>
+        <div class="card-sub">Everyday N4 conversations</div>
+      </div></div>
+      <div class="dialogue-block">
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="speaker-label">友人</div>
+            <div class="bubble bubble-jp">最近、日本語の勉強は<span class="key-phrase">どうですか</span>？</div>
+            <div class="bubble-en">How's your Japanese study going lately?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">少しずつ<span class="key-phrase">上手になってきた</span>と思います。でも、まだ敬語が<span class="key-phrase">難しくて</span>…。</div>
+            <div class="bubble-ruby">Sukoshi zutsu jōzu ni natte kita to omoimasu. Demo, mada keigo ga muzukashikute...</div>
+            <div class="bubble-en">I think I'm gradually getting better. But keigo (formal speech) is still difficult...</div>
+          </div>
+        </div>
+        <div class="dialogue-row">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">図書館に<span class="key-phrase">日本語の本</span>がたくさんありますよ。<span class="key-phrase">試してみたら</span>どうですか？</div>
+            <div class="bubble-en">The library has lots of Japanese books. Why don't you try using them?</div>
+          </div>
+        </div>
+        <div class="dialogue-row right">
+          <div class="bubble-wrap">
+            <div class="bubble bubble-jp">そうですね。<span class="key-phrase">行ってみます</span>！</div>
+            <div class="bubble-en">That's true. I'll go try it!</div>
+          </div>
+        </div>
+        <button class="audio-btn" onclick="speak('少しずつ上手になってきたと思います。でも、まだ敬語が難しくて。')">聞く</button>
+      </div>
+    </div>
+
+  </div><!-- end n4-cards -->
+
+  <!-- N4 文法まとめ -->
+  <div class="vocab-section" style="margin-top:16px">
+    <h3>📋 N4文法ポイントまとめ</h3>
+    <div class="vocab-grid">
+      <div class="vocab-card"><div class="vocab-jp">〜ので</div><div class="vocab-ruby">～ので</div><div class="vocab-en">because ~ (polite reason)</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜ために</div><div class="vocab-ruby">～ために</div><div class="vocab-en">in order to / because of</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜たら</div><div class="vocab-ruby">～たら</div><div class="vocab-en">if / when (conditional)</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜ながら</div><div class="vocab-ruby">～ながら</div><div class="vocab-en">while doing ~</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜てしまう</div><div class="vocab-ruby">～てしまう</div><div class="vocab-en">end up doing / regrettably</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜そうです</div><div class="vocab-ruby">～そうです</div><div class="vocab-en">looks like / I heard that</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜てみる</div><div class="vocab-ruby">～てみる</div><div class="vocab-en">try doing ~</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜ていただけますか</div><div class="vocab-ruby">ていただけますか</div><div class="vocab-en">could you please ~ (polite)</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜てくる</div><div class="vocab-ruby">～てくる</div><div class="vocab-en">become / start to (change)</div><span class="vocab-tag tag-exp">N4</span></div>
+      <div class="vocab-card"><div class="vocab-jp">〜と思います</div><div class="vocab-ruby">～とおもいます</div><div class="vocab-en">I think that ~</div><span class="vocab-tag tag-exp">N4</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     📝 文法
+═══════════════════════════════════════════ -->
+<section class="section" id="section-grammar">
+  <div class="sec-header">
+    <div class="sec-icon">📝</div>
+    <div>
+      <div class="sec-title">文法ポイント Grammar Points</div>
+      <div class="sec-sub">生活でよく使うパターン / Patterns used in daily life</div>
+    </div>
+  </div>
+
+  <div class="grammar-list">
+    <div class="grammar-card">
+      <div class="grammar-pattern">〜てもいいですか？</div>
+      <div class="grammar-en">May I ~? / Is it okay to ~?</div>
+      <div class="grammar-example">
+        <div class="jp">ここで<strong>写真を撮ってもいいですか</strong>？</div>
+        <div class="ruby">Koko de shashin wo totte mo ii desu ka?</div>
+        <div class="en">May I take photos here?</div>
+      </div>
+      <div class="grammar-example">
+        <div class="jp">窓を<strong>開けてもいいですか</strong>？</div>
+        <div class="en">May I open the window?</div>
+      </div>
+      <div class="tip-box">返事：「どうぞ」（yes, please go ahead）/ 「すみません、ちょっと…」（polite no）</div>
+    </div>
+
+    <div class="grammar-card">
+      <div class="grammar-pattern">〜たいです</div>
+      <div class="grammar-en">I want to ~ (expressing desire)</div>
+      <div class="grammar-example">
+        <div class="jp">住民票を<strong>もらいたいです</strong>。</div>
+        <div class="en">I'd like to get my resident registration.</div>
+      </div>
+      <div class="grammar-example">
+        <div class="jp">先生に相談<strong>したいです</strong>。</div>
+        <div class="en">I want to consult with the doctor.</div>
+      </div>
+    </div>
+
+    <div class="grammar-card">
+      <div class="grammar-pattern">〜ていただけますか？</div>
+      <div class="grammar-en">Could you please ~? (polite request)</div>
+      <div class="grammar-example">
+        <div class="jp">もう一度<strong>説明していただけますか</strong>？</div>
+        <div class="en">Could you please explain once more?</div>
+      </div>
+      <div class="grammar-example">
+        <div class="jp">ゆっくり<strong>話していただけますか</strong>？</div>
+        <div class="en">Could you please speak more slowly?</div>
+      </div>
+    </div>
+
+    <div class="grammar-card">
+      <div class="grammar-pattern">〜はどこですか？</div>
+      <div class="grammar-en">Where is ~? (asking for directions)</div>
+      <div class="grammar-example">
+        <div class="jp">外科<strong>はどこですか</strong>？</div>
+        <div class="en">Where is the surgery department?</div>
+      </div>
+      <div class="grammar-example">
+        <div class="jp">住民票の窓口<strong>はどこですか</strong>？</div>
+        <div class="en">Where is the counter for resident registration?</div>
+      </div>
+    </div>
+
+    <div class="grammar-card">
+      <div class="grammar-pattern">〜がわかりません</div>
+      <div class="grammar-en">I don't understand ~ / I'm not sure about ~</div>
+      <div class="grammar-example">
+        <div class="jp">記入方法<strong>がわかりません</strong>。</div>
+        <div class="en">I don't know how to fill this in.</div>
+      </div>
+      <div class="grammar-example">
+        <div class="jp">書いてあること<strong>がわかりません</strong>。</div>
+        <div class="en">I can't understand what's written here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     🎯 練習問題
+═══════════════════════════════════════════ -->
+<section class="section" id="section-quiz">
+  <div class="sec-header">
+    <div class="sec-icon">🎯</div>
+    <div>
+      <div class="sec-title">練習問題 Practice Quiz</div>
+      <div class="sec-sub">日本語を練習しましょう！/ Let's practice Japanese!</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:16px">
+    <div style="font-size:13px;color:var(--text-soft);margin-bottom:4px">スコア Score: <strong id="score-text">0 / 0</strong></div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="quiz-wrap" id="quiz-container">
+
+    <div class="quiz-card" data-answer="1">
+      <div class="quiz-q">病院で：医者に何と言いますか？</div>
+      <div class="quiz-q-en">At the hospital: What do you say to the doctor first?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,0)"><span>A</span>いらっしゃいませ！</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,0)"><span>B</span>どうしましたか？</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,0)"><span>C</span>おなかが痛いです。</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,0)"><span>D</span>ありがとうございました。</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-0"></div>
+    </div>
+
+    <div class="quiz-card" data-answer="2">
+      <div class="quiz-q">「この薬は１日３回、食後に飲んでください」の意味は？</div>
+      <div class="quiz-q-en">What does this sentence mean?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,1)"><span>A</span>Take this medicine once a day before meals.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,1)"><span>B</span>Take this medicine twice a day with meals.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,1)"><span>C</span>Take this medicine 3 times a day after meals.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,1)"><span>D</span>Take this medicine 3 times a day before meals.</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-1"></div>
+    </div>
+
+    <div class="quiz-card" data-answer="0">
+      <div class="quiz-q">市役所で：引越しの手続きに必要なものは？</div>
+      <div class="quiz-q-en">City hall: What do you need for moving-in registration?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,2)"><span>A</span>在留カード・パスポート</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,2)"><span>B</span>クレジットカード・学生証</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,2)"><span>C</span>保険証・お金</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,2)"><span>D</span>免許証・印鑑</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-2"></div>
+    </div>
+
+    <div class="quiz-card" data-answer="1">
+      <div class="quiz-q">アルバイト面接で「もう一度おねがいします」は何の意味？</div>
+      <div class="quiz-q-en">What does "mō ichido onegai shimasu" mean?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,3)"><span>A</span>Please speak slowly.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,3)"><span>B</span>Please say it one more time.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,3)"><span>C</span>Please write it down.</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,3)"><span>D</span>Please call me again.</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-3"></div>
+    </div>
+
+    <div class="quiz-card" data-answer="3">
+      <div class="quiz-q">「〜ていただけますか」はどんな表現？</div>
+      <div class="quiz-q-en">What kind of expression is 〜ていただけますか?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,4)"><span>A</span>Casual request (to a friend)</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,4)"><span>B</span>Expressing your own desire</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,4)"><span>C</span>Asking for permission</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,4)"><span>D</span>Polite request to someone</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-4"></div>
+    </div>
+
+    <div class="quiz-card" data-answer="2">
+      <div class="quiz-q">救急・緊急のとき、何番に電話しますか？</div>
+      <div class="quiz-q-en">What number do you call in an emergency / for an ambulance?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answerQuiz(this,0,5)"><span>A</span>110</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,1,5)"><span>B</span>112</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,2,5)"><span>C</span>119</button>
+        <button class="quiz-opt" onclick="answerQuiz(this,3,5)"><span>D</span>118</button>
+      </div>
+      <div class="quiz-feedback" id="feedback-5"></div>
+    </div>
+
+  </div><!-- end quiz-container -->
+
+  <div style="text-align:center;margin-top:20px">
+    <button onclick="resetQuiz()" style="background:var(--text);color:var(--yellow);border:none;padding:12px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;">
+      🔄 もう一度やる Reset Quiz
+    </button>
+  </div>
+</section>
+
+</main>
+
+<div id="quiz-score-bar">⭐ スコア Score: <span id="final-score">0</span> / 6</div>
+
+<script>
+// ── TAB SWITCH ─────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// ── HOSPITAL SUB-TAB ───────────────────
+function showHospitalTab(tab, chip) {
+  chip.closest('.hero-chips').querySelectorAll('.hero-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+
+  const blockMap = {
+    all:        ['hosp-dept','hosp-reception','hosp-doctor','hosp-pharmacy','hosp-notebook','hosp-insurance','hosp-emergency','hosp-vocab-all'],
+    dept:       ['hosp-dept'],
+    reception:  ['hosp-reception'],
+    doctor:     ['hosp-doctor'],
+    pharmacy:   ['hosp-pharmacy'],
+    notebook:   ['hosp-notebook'],
+    insurance:  ['hosp-insurance'],
+    emergency:  ['hosp-emergency'],
+  };
+  document.querySelectorAll('.hosp-block').forEach(b => b.classList.remove('active'));
+  (blockMap[tab] || []).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  });
+}
+
+// ── FILTER CARDS ──────────────────────
+function filterCards(section, cat, chip) {
+  chip.closest('.hero-chips').querySelectorAll('.hero-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+
+  // グリッドのIDマッピング
+  const gridId = section + '-cards';
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+
+  grid.querySelectorAll('.situation-card').forEach(c => {
+    if (cat === 'all' || c.dataset.cat === cat) {
+      c.style.display = '';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
+// ── SPEECH SYNTHESIS ──────────────────
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ja-JP';
+    utter.rate = 0.85;
+    const voices = window.speechSynthesis.getVoices();
+    const jaVoice = voices.find(v => v.lang.startsWith('ja'));
+    if (jaVoice) utter.voice = jaVoice;
+    window.speechSynthesis.speak(utter);
+  } else {
+    alert('お使いのブラウザは音声に対応していません。\nYour browser does not support speech synthesis.');
+  }
+}
+window.speechSynthesis && window.speechSynthesis.getVoices();
+
+// Initialize hospital blocks (show all on load)
+document.addEventListener('DOMContentLoaded', () => {
+  ['hosp-dept','hosp-reception','hosp-doctor','hosp-pharmacy','hosp-notebook','hosp-insurance','hosp-emergency','hosp-vocab-all']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('active'); });
+});
+
+// ── QUIZ ──────────────────────────────
+let quizScore = 0;
+let quizAnswered = 0;
+const totalQ = 6;
+
+const correctMessages = [
+  'せいかい！ Correct! ✅ おなかが痛いです is the right answer — you describe your symptoms.',
+  'せいかい！ Correct! ✅ 3 times a day (1日3回), after meals (食後) — remember this pattern!',
+  'せいかい！ Correct! ✅ 在留カード and passport are required for moving-in registration.',
+  'せいかい！ Correct! ✅ もう一度 = one more time. Very useful at work!',
+  'せいかい！ Correct! ✅ 〜ていただけますか is a polite request — use it at hospitals and city hall!',
+  'せいかい！ Correct! ✅ 119 = ambulance & fire. 110 = police. Important numbers!',
+];
+const wrongMessages = [
+  'ざんねん…Not quite. The patient describes symptoms → おなかが痛いです。(C)',
+  'ざんねん…食後 means AFTER meals, 3 times a day. Answer is (C).',
+  'ざんねん…For moving-in you need your 在留カード and passport. Answer is (A).',
+  'ざんねん…もう一度 = one more time. ゆっくり = slowly. Answer is (B).',
+  'ざんねん…〜ていただけますか is a polite request to someone. Answer is (D).',
+  'ざんねん…救急・火事 is 119. Police is 110. Answer is (C).',
+];
+
+function answerQuiz(btn, choice, qIdx) {
+  const card = btn.closest('.quiz-card');
+  if (card.dataset.answered) return;
+  card.dataset.answered = 'true';
+
+  const correct = parseInt(card.dataset.answer);
+  const opts = card.querySelectorAll('.quiz-opt');
+  opts.forEach((o, i) => {
+    o.classList.add('disabled');
+    if (i === correct) o.classList.add('correct');
+    else if (i === choice && choice !== correct) o.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback-' + qIdx);
+  if (choice === correct) {
+    quizScore++;
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = correctMessages[qIdx];
+  } else {
+    fb.className = 'quiz-feedback wrong';
+    fb.textContent = wrongMessages[qIdx];
+  }
+
+  quizAnswered++;
+  document.getElementById('score-text').textContent = quizScore + ' / ' + quizAnswered;
+  document.getElementById('progress-bar').style.width = (quizAnswered / totalQ * 100) + '%';
+
+  if (quizAnswered === totalQ) {
+    const bar = document.getElementById('quiz-score-bar');
+    document.getElementById('final-score').textContent = quizScore;
+    bar.classList.add('visible');
+    setTimeout(() => bar.classList.remove('visible'), 4000);
+  }
+}
+
+// ── REGION SELECTOR ────────────────────
+function showRegion(id, btn) {
+  btn.closest('div').querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.region-info').forEach(r => r.classList.remove('active'));
+  const el = document.getElementById('region-' + id);
+  if (el) el.classList.add('active');
+}
+
+function resetQuiz() {  quizScore = 0; quizAnswered = 0;
+  document.getElementById('score-text').textContent = '0 / 0';
+  document.getElementById('progress-bar').style.width = '0%';
+  document.querySelectorAll('.quiz-card').forEach(card => {
+    delete card.dataset.answered;
+    card.querySelectorAll('.quiz-opt').forEach(o => {
+      o.className = 'quiz-opt';
+    });
+    card.querySelectorAll('.quiz-feedback').forEach(f => {
+      f.className = 'quiz-feedback';
+      f.textContent = '';
+    });
+  });
+  document.getElementById('quiz-score-bar').classList.remove('visible');
+}
+</script>
+</body>
+</html>
