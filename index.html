@@ -3425,20 +3425,26 @@ function filterCards(section, cat, chip) {
 }
 
 // ── SPEECH SYNTHESIS ──────────────────
+function _inApp(){return /Instagram|FBAN|FBAV|Line\/|TikTok|musical_ly/i.test(navigator.userAgent)}
+function _audioHelp(msg){let t=document.getElementById('audioHelp');if(!t){t=document.createElement('div');t.id='audioHelp';t.style.cssText='position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;max-width:92vw;background:#1E0E40;color:#fff;padding:12px 16px;border-radius:12px;font-size:.85rem;line-height:1.6;box-shadow:0 8px 24px rgba(0,0,0,.25)';t.onclick=()=>t.remove();document.body.appendChild(t)}t.innerHTML=msg+'<br><small style="opacity:.7">（タップで閉じる）</small>';clearTimeout(t._t);t._t=setTimeout(()=>t.remove(),9000)}
 function speak(text) {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'ja-JP';
-    utter.rate = 0.85;
-    const voices = window.speechSynthesis.getVoices();
-    const jaVoice = voices.find(v => v.lang.startsWith('ja'));
-    if (jaVoice) utter.voice = jaVoice;
-    window.speechSynthesis.speak(utter);
-  } else {
-    alert('お使いのブラウザは音声に対応していません。\nYour browser does not support speech synthesis.');
+  if (!('speechSynthesis' in window) || !window.SpeechSynthesisUtterance) {
+    _audioHelp(_inApp() ? '🔇 InstagramやLINEの中のブラウザでは音声が出ません。「…」→「ブラウザで開く」でSafariやChromeを使ってください。<br>Open this page in Safari or Chrome to hear audio.' : '🔇 このブラウザは音声読み上げに対応していません。SafariかChromeで開いてください。<br>Please use Safari or Chrome.');
+    return;
   }
+  try { window.speechSynthesis.cancel(); } catch (e) {}
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'ja-JP';
+  utter.rate = 0.85;
+  const voices = window.speechSynthesis.getVoices();
+  const jaVoice = voices.find(v => v.lang && v.lang.replace('_','-').startsWith('ja'));
+  if (jaVoice) utter.voice = jaVoice;
+  else if (voices.length) _audioHelp('🔇 この端末に日本語の読み上げ音声がありません。端末の設定 → 言語（読み上げ）で日本語の音声を追加してください。<br>Add a Japanese voice in your device speech settings.');
+  let started = false; utter.onstart = () => { started = true; };
+  setTimeout(() => { try { window.speechSynthesis.resume(); window.speechSynthesis.speak(utter); } catch (e) {} }, 60);
+  setTimeout(() => { if (!started && !window.speechSynthesis.speaking) _audioHelp(_inApp() ? '🔇 アプリの中のブラウザでは音声が出ないことがあります。「…」→「ブラウザで開く」を選んでください。<br>Open in Safari/Chrome to hear audio.' : '🔇 音が出ないときは：①マナーモード（消音スイッチ）を切る ②音量を上げる ③SafariかChromeで開く<br>No sound? Turn off silent mode, raise the volume, or use Safari/Chrome.'); }, 1800);
 }
+if (window.speechSynthesis) { try { window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); } catch (e) {} }
 window.speechSynthesis && window.speechSynthesis.getVoices();
 
 // Initialize hospital blocks (show all on load)
