@@ -3536,6 +3536,31 @@ function resetQuiz() {  quizScore = 0; quizAnswered = 0;
 }
 </script>
 
+<!-- Nihongo Michi shorts (click-to-play, no YouTube connection until clicked) -->
+<section id="nm-shorts" style="max-width:900px;margin:32px auto;padding:0 16px">
+<h2 style="font-size:1.2rem;color:#0f172a;margin:0 0 4px">🎬 1分で日本語クイズ <span style="font-size:.85rem;color:#64748b;font-weight:600">/ 1-minute Japanese quizzes</span></h2>
+<p style="font-size:.82rem;color:#64748b;margin:0 0 12px">毎日21:30（日本時間）に新しい動画。コメントで点数を教えてね！ / New video every day — comment your score!</p>
+<div id="nm-shorts-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px"></div>
+<p style="text-align:center;margin:14px 0 0"><a href="https://www.youtube.com/channel/UC-I_5xY2hqW3AqOy-mAFfVg?sub_confirmation=1" target="_blank" rel="noopener" style="display:inline-block;background:#dc2626;color:#fff;font-weight:700;padding:10px 20px;border-radius:10px;text-decoration:none;font-size:.9rem">▶ YouTubeで登録 / Subscribe</a></p>
+</section>
+<script>
+(function(){
+var V=[{"id": "fL-UeyJ_Ja8", "t": "2026-11-13T12:30:00Z", "c": "jlpt", "ja": "N5漢字クイズ", "en": "Can you read these 5 kanji?"}, {"id": "8oztnpQ6kXk", "t": "2026-11-14T12:30:00Z", "c": "jlpt", "ja": "助詞クイズ", "en": "Which particle fits?"}, {"id": "xaCzzjzKBJI", "t": "2026-11-15T12:30:00Z", "c": "jlpt", "ja": "N4漢字チャレンジ", "en": "JLPT N4 kanji challenge"}, {"id": "xCvBgYeJm2w", "t": "2026-11-16T12:30:00Z", "c": "life", "ja": "コンビニの日本語", "en": "Japanese at the konbini"}, {"id": "PeQZhov9Kcw", "t": "2026-11-17T11:00:00Z", "c": "kaigo", "ja": "介護の声かけ", "en": "Care work: what do you say first?"}, {"id": "be-puiMU64E", "t": "2026-11-17T12:30:00Z", "c": "jlpt", "ja": "N3文法クイズ", "en": "JLPT N3 grammar quiz"}, {"id": "UrPVmS1ZFuo", "t": "2026-11-18T12:30:00Z", "c": "culture", "ja": "縁起のいい数字", "en": "Lucky & unlucky numbers"}, {"id": "VY3xtj2YenY", "t": "2026-11-19T12:30:00Z", "c": "jlpt", "ja": "N2語彙クイズ", "en": "JLPT N2 vocabulary"}, {"id": "JDyAE-fru4M", "t": "2026-11-20T11:00:00Z", "c": "kaigo", "ja": "片麻痺の着替え", "en": "Care work: dressing help"}, {"id": "7ZoAKdtvjzc", "t": "2026-11-20T12:30:00Z", "c": "culture", "ja": "英語にできない日本語①", "en": "Words with no English twin"}, {"id": "eAVeRNgz5v0", "t": "2026-11-21T12:30:00Z", "c": "culture", "ja": "日本の食べ物クイズ", "en": "Japanese food quiz"}, {"id": "UNZiHi5am30", "t": "2026-11-22T12:30:00Z", "c": "culture", "ja": "日本のマナー", "en": "Japanese manners quiz"}, {"id": "9rYKH6H9f6M", "t": "2026-11-23T12:30:00Z", "c": "life", "ja": "病院の日本語", "en": "Japanese at the clinic"}, {"id": "oge2YtgI198", "t": "2026-11-24T11:00:00Z", "c": "kaigo", "ja": "介護の漢字", "en": "Care work kanji"}, {"id": "fHQQC-PAgH0", "t": "2026-11-24T12:30:00Z", "c": "culture", "ja": "英語にできない日本語②", "en": "Daily words with no English twin"}, {"id": "fzUmaaFT5oc", "t": "2026-11-25T12:30:00Z", "c": "culture", "ja": "むかしばなしクイズ", "en": "Japanese folk tales quiz"}, {"id": "yknscOCseHg", "t": "2026-11-26T12:30:00Z", "c": "jlpt", "ja": "N4の1分クイズ", "en": "JLPT N4 in 1 minute"}, {"id": "UO4k9iXVo-4", "t": "2026-11-27T11:00:00Z", "c": "kaigo", "ja": "「家に帰りたい」と言われたら", "en": "Care work: 'I want to go home'"}];
+var CATS=["life", "culture", "kaigo", "jlpt"];
+var now=Date.now(),g=document.getElementById('nm-shorts-grid');if(!g)return;
+var list=V.filter(function(v){return CATS.indexOf(v.c)>=0&&Date.parse(v.t)<=now}).sort(function(a,b){return Date.parse(b.t)-Date.parse(a.t)}).slice(0,6);
+if(!list.length){document.getElementById('nm-shorts').style.display='none';return}
+var col={jlpt:'#0369a1',culture:'#b45309',life:'#047857',kaigo:'#7c3aed'};
+list.forEach(function(v){
+ var d=document.createElement('button');d.type='button';
+ d.setAttribute('aria-label','Play: '+v.en);
+ d.style.cssText='aspect-ratio:9/16;border:none;border-radius:14px;cursor:pointer;padding:12px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;color:#fff;font-family:inherit;background:linear-gradient(160deg,'+(col[v.c]||'#0369a1')+',#0f172a)';
+ d.innerHTML='<span style="font-size:.72rem;opacity:.8;font-weight:700;letter-spacing:.05em">'+v.c.toUpperCase()+'</span><span style="font-size:1rem;font-weight:800;line-height:1.35">'+v.ja+'</span><span style="font-size:.74rem;opacity:.85">'+v.en+'</span><span style="font-size:2rem;text-align:center">▶</span>';
+ d.onclick=function(){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+v.id+'?autoplay=1&playsinline=1';f.title=v.en;f.allow='autoplay; encrypted-media; picture-in-picture';f.allowFullscreen=true;f.style.cssText='width:100%;aspect-ratio:9/16;border:0;border-radius:14px';d.replaceWith(f)};
+ g.appendChild(d)});
+})();
+</script>
+
 <section class="nm-foot" style="max-width:900px;margin:40px auto 30px;padding:0 16px;font-family:inherit">
  <div style="background:#fff;border-radius:16px;border:1.5px solid #DDD6FE;padding:20px;display:flex;flex-direction:column;gap:12px">
   <b style="font-size:1.05rem">🤝 にほんご LIFE について / About</b>
